@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calculon</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static/styles', filename='style.css') }}">
+  </head>
+
+
+  <body>
+
+    <header><h1>Calculon_</h1></header>
+
+    <main>
+
+<!----------------Главное меню------------------------------------------------------------------------->
+      <nav>
+        <ul>
+          <li>Калькулятор</li>
+          <li>Инструкции</li>
+          <li>Формулы</li>
+        </ul>
+      </nav>
+
+
+<!----------------Кнопки режима рассчетов--------------------------------------------------------------->
+      <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'WBsole')">Wildberries ИП</button>
+        <button class="tablinks" onclick="openTab(event, 'WBltd')">Wildberries ООО</button>
+        <button class="tablinks" onclick="openTab(event, 'OZsole')">OZON ИП</button>
+        <button class="tablinks" onclick="openTab(event, 'OZltd')">OZON ООО</button>
+      </div>
+
+    </main>
+
+
+<!----------------footer-------------------------------------------------------------------------------->
+    <footer>
+      <p>developed by: Roman Balashov</p>
+    </footer>
+  </body>
+</html>
