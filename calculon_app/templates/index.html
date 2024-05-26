@@ -26,7 +26,6 @@
         </ul>
       </nav>
 
-
 <!--------------------------------------Кнопки режима рассчетов----------------------------------------->
       <div class="tab">
         <button class="tablinks" onclick="openTab(event, 'WBsole')">Wildberries ИП</button>
@@ -36,6 +35,7 @@
       </div>
 
 <!----------------------------------Расчеты для Wildberries ИП (WBsole)---------------------------------->
+<!------------------------------------------------------------------------------------------------------->
 <!------------------------------------------------------------------------------------------------------->
       <div id="WBsole" class="tabcontent">
         <h3>Калькулятор для Wildberries ИП</h3>
@@ -107,13 +107,521 @@
           </div/
 
         </form>
+<!------------------------------------------------------------------------------------------------------->
+<!---------------------------------------Расчет профита (Кнопка Profit)---------------------------------->
+        <form id="priceForm-WBsolePrice" action="{{ url_for('calculate', tab='WBsole', subtab='Profit') }}" method="post">
 
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Совокупный процент комиссий Wildberries</h4>
+              <input type="text" name="cperc" oninput="checkFormFields('WBsoleProfit')">
+          </div>
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Фиксированная часть комиссий Wildberries</h4>
+              <input type="text" name="cfix" oninput="checkFormFields('WBsoleProfit')">
+          </div>
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Налог для ИП в процентах</h4>
+              <input type="text" name="tax" oninput="checkFormFields('WBsoleProfit')">
+          </div>
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Риски для ИП в процентах</h4>
+              <input type="text" name="risk" oninput="checkFormFields('WBsoleProfit')">
+          </div>
+
+
+          <div class="input_fields">
+              <h4>Стоимость труда на упаковку</h4>
+              <input type="text" name="box_wage_cost" oninput="checkFormFields('WBsoleProfit')">
+          </div>
+
+
+          <div class="input_fields">
+              <h4>Стоимость упаковки</h4>
+              <input type="text" name="box_cost" oninput="checkFormFields('WBsoleProfit')">
+          </div>
+
+          
+          <div class="input_fields">
+              <h4>Размер упаковки</h4>
+              <input type="text" name="box_size" oninput="checkFormFields('WBsoleProfit')">
+          </div>
+
+
+          <div class="input_fields">
+            <h4>Себестоимость единицы</h4>
+            <input type="text" name="cost_per_one" oninput="checkFormFields('WBsoleProfit')">
+          </div>
+
+
+          <div class="input_fields">
+              <h4>Цена</h4>
+              <input type="text" name="current_price" oninput="checkFormFields('WBsoleProfit')">
+          </div>
+
+
+          <div class="input_fields">
+              <h4>Единиц в одном товаре</h4>
+              <input type="text" name="des_percent" oninput="checkFormFields('WBsoleProfit')">
+          </div>
+          
+          <!--Кнопка Рассчитать-->
+          <div>
+            <input id="submitButton" type="submit" value="Расcчитать" disabled>
+          </div/
+        </form>
       </div>
 <!------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------->
+<!----------------------------------Расчеты для Wildberries ООО (WBltd)---------------------------------->
+<!------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------->
+      <div id="WBltd" class="tabcontent">
+        <h3>Калькулятор для Wildberries ИП</h3>
 
+        <div class="subtab">
+          <button class="subtablinks" onclick="openSubTab(event, 'WBltdPrice')">Price</button>
+          <button class="subtablinks" onclick="openSubTab(event, 'WBltdProfit')">Profit</button>
+        </div>
+
+<!----------------------------------------Расчет цены (Кнопка Price)------------------------------------->
+        <form id="priceForm-WBltdPrice" action="{{ url_for('calculate', tab='WBltd', subtab='Price') }}" method="post">
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Совокупный процент комиссий Wildberries</h4>
+              <input type="text" name="cperc" oninput="checkFormFields('WBltdPrice')">
+          </div>
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Фиксированная часть комиссий Wildberries</h4>
+              <input type="text" name="cfix" oninput="checkFormFields('WBltdPrice')">
+          </div>
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Налог для ИП в процентах</h4>
+              <input type="text" name="tax" oninput="checkFormFields('WBltdPrice')">
+          </div>
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Риски для ИП в процентах</h4>
+              <input type="text" name="risk" oninput="checkFormFields('WBltdPrice')">
+          </div>
+
+
+          <div class="input_fields">
+            <h4>Себестоимость единицы</h4>
+            <input type="text" name="cost_per_one" oninput="checkFormFields('WBltdPrice')">
+          </div>
+
+
+          <div class="input_fields">
+              <h4>Желаемый процент прибыли от себестоимости</h4>
+              <input type="text" name="des_percent" oninput="checkFormFields('WBltdPrice')">
+          </div>
+
+          <!--Колчество, стоимость труда, стоимость упаковки, объем упаковки-->
+          <div id="dictionary-container-WBltdPrice">
+            <h4>Комплекты</h4>
+            <div class="dictionary">
+              <label for="count_per_one">Единиц в одном товаре:</label>
+              <input type="text" name="count_per_one" oninput="checkFormFields('WBltdPrice')">
+              <label for="box_wage_cost">Стоимость труда на упаковку:</label>
+              <input type="text" name="box_wage_cost" oninput="checkFormFields('WBltdPrice')">
+              <label for="box_cost">Стоимость упаковки:</label>
+              <input type="text" name="box_cost" oninput="checkFormFields('WBltdPrice')">
+              <label for="box_size">Размер упаковки:</label>
+              <input type="text" name="box_size" oninput="checkFormFields('WBltdPrice')">
+              <button type="button" onclick="removeDictionaryElement(this, 'WBltdPrice')">Удалить</button>
+            </div>
+          </div>
+          <button type="button" onclick="addDictionaryElement('WBltdPrice')">Добавить</button>
+          
+          <!--Кнопка Рассчитать-->
+          <div>
+            <input id="submitButton" type="submit" value="Расcчитать" disabled>
+          </div/
+
+        </form>
+<!------------------------------------------------------------------------------------------------------->
+<!------------------------------------Расчет профита (Кнопка Profit)------------------------------------->
+        <form id="priceForm-WBltdPrice" action="{{ url_for('calculate', tab='WBltd', subtab='Profit') }}" method="post">
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Совокупный процент комиссий Wildberries</h4>
+              <input type="text" name="cperc" oninput="checkFormFields('WBltdProfit')">
+          </div>
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Фиксированная часть комиссий Wildberries</h4>
+              <input type="text" name="cfix" oninput="checkFormFields('WBltdProfit')">
+          </div>
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Налог для ИП в процентах</h4>
+              <input type="text" name="tax" oninput="checkFormFields('WBltdProfit')">
+          </div>
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Риски для ИП в процентах</h4>
+              <input type="text" name="risk" oninput="checkFormFields('WBltdProfit')">
+          </div>
+
+
+          <div class="input_fields">
+              <h4>Стоимость труда на упаковку</h4>
+              <input type="text" name="box_wage_cost" oninput="checkFormFields('WBltdProfit')">
+          </div>
+
+
+          <div class="input_fields">
+              <h4>Стоимость упаковки</h4>
+              <input type="text" name="box_cost" oninput="checkFormFields('WBltdProfit')">
+          </div>
+
+          
+          <div class="input_fields">
+              <h4>Размер упаковки</h4>
+              <input type="text" name="box_size oninput="checkFormFields('WBltdProfit')">
+          </div>
+
+        
+          <div class="input_fields">
+            <h4>Себестоимость единицы</h4>
+            <input type="text" name="cost_per_one" oninput="checkFormFields('WBltdProfit')">
+          </div>
+
+
+          <div class="input_fields">
+              <h4>Цена</h4>
+              <input type="text" name="current_price" oninput="checkFormFields('WBltdProfit')">
+          </div>
+          
+
+          <div class="input_fields">
+              <h4>Единиц в одном товаре</h4>
+              <input type="text" name="count_per_one" oninput="checkFormFields('WBltdProfit')">
+          </div>
+
+          <!--Кнопка Рассчитать-->
+          <div>
+            <input id="submitButton" type="submit" value="Расcчитать" disabled>
+          </div/
+        </form>
+      </div>
+<!------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------->
+<!--------------------------------------Расчеты для Ozon ИП (OZsole)------------------------------------->
+<!------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------->
+      <div id="OZsole" class="tabcontent">
+        <h3>Калькулятор для OZON ИП</h3>
+
+        <div class="subtab">
+          <button class="subtablinks" onclick="openSubTab(event, 'OZsolePrice')">Price</button>
+          <button class="subtablinks" onclick="openSubTab(event, 'OZsoleProfit')">Profit</button>
+        </div>
+
+<!----------------------------------------Расчет цены (Кнопка Price)------------------------------------->
+        <form id="priceForm-OZsolePrice" action="{{ url_for('calculate', tab='OZsole', subtab='Price') }}" method="post">
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Совокупный процент комиссий OZON</h4>
+              <input type="text" name="cperc" oninput="checkFormFields('OZsolePrice')">
+          </div>
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Фиксированная часть комиссий OZON</h4>
+              <input type="text" name="cfix" oninput="checkFormFields('OZsolePrice')">
+          </div>
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Налог для ИП в процентах</h4>
+              <input type="text" name="tax" oninput="checkFormFields('OZsolePrice')">
+          </div>
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Риски для ИП в процентах</h4>
+              <input type="text" name="risk" oninput="checkFormFields('OZsolePrice')">
+          </div>
+
+
+          <div class="input_fields">
+            <h4>Себестоимость единицы</h4>
+            <input type="text" name="cost_per_one" oninput="checkFormFields('OZsolePrice')">
+          </div>
+
+
+          <div class="input_fields">
+              <h4>Желаемый процент прибыли от себестоимости</h4>
+              <input type="text" name="des_percent" oninput="checkFormFields('OZsolePrice')">
+          </div>
+
+          <!--Колчество, стоимость труда, стоимость упаковки, объем упаковки-->
+          <div id="dictionary-container-OZsolePrice">
+            <h4>Комплекты</h4>
+            <div class="dictionary">
+              <label for="count_per_one">Единиц в одном товаре:</label>
+              <input type="text" name="count_per_one" oninput="checkFormFields('OZsolePrice')">
+              <label for="box_wage_cost">Стоимость труда на упаковку:</label>
+              <input type="text" name="box_wage_cost" oninput="checkFormFields('OZsolePrice')">
+              <label for="box_cost">Стоимость упаковки:</label>
+              <input type="text" name="box_cost" oninput="checkFormFields('OZsolePrice')">
+              <label for="box_size">Размер упаковки:</label>
+              <input type="text" name="box_size" oninput="checkFormFields('OZsolePrice')">
+              <button type="button" onclick="removeDictionaryElement(this, 'OZsolePrice')">Удалить</button>
+            </div>
+          </div>
+          <button type="button" onclick="addDictionaryElement('OZsolePrice')">Добавить</button>
+          
+          <!--Кнопка Рассчитать-->
+          <div>
+            <input id="submitButton" type="submit" value="Расcчитать" disabled>
+          </div/
+
+        </form>
+<!------------------------------------------------------------------------------------------------------->
+<!------------------------------------Расчет профита (Кнопка Profit)------------------------------------->
+        <form id="priceForm-OZsolePrice" action="{{ url_for('calculate', tab='OZsole', subtab='Profit') }}" method="post">
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Совокупный процент комиссий OZON</h4>
+              <input type="text" name="cperc" oninput="checkFormFields('OZsoleProfit')">
+          </div>
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Фиксированная часть комиссий OZON</h4>
+              <input type="text" name="cfix" oninput="checkFormFields('OZsoleProfit')">
+          </div>
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Налог для ИП в процентах</h4>
+              <input type="text" name="tax" oninput="checkFormFields('OZsoleProfit')">
+          </div>
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Риски для ИП в процентах</h4>
+              <input type="text" name="risk" oninput="checkFormFields('OZsoleProfit')">
+          </div>
+
+
+          <div class="input_fields">
+              <h4>Стоимость труда на упаковку</h4>
+              <input type="text" name="box_wage_cost" oninput="checkFormFields('OZsoleProfit')">
+          </div>
+
+
+          <div class="input_fields">
+              <h4>Стоимость упаковки</h4>
+              <input type="text" name="box_cost" oninput="checkFormFields('OZsoleProfit')">
+          </div>
+
+          
+          <div class="input_fields">
+              <h4>Размер упаковки</h4>
+              <input type="text" name="box_size" oninput="checkFormFields('OZsoleProfit')">
+          </div>
+
+
+          <div class="input_fields">
+            <h4>Себестоимость единицы</h4>
+            <input type="text" name="cost_per_one" oninput="checkFormFields('OZsoleProfit')">
+          </div>
+
+
+          <div class="input_fields">
+              <h4>Цена</h4>
+              <input type="text" name="current_price" oninput="checkFormFields('OZsoleProfit')">
+          </div>
+
+
+          <div class="input_fields">
+              <h4>Единиц в одном товаре</h4>
+              <input type="text" name="count_per_one" oninput="checkFormFields('OZsoleProfit')">
+          </div>
+          
+          <!--Кнопка Рассчитать-->
+          <div>
+            <input id="submitButton" type="submit" value="Расcчитать" disabled>
+          </div/
+        </form>
+      </div>
+<!------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------->
+<!-------------------------------------Расчеты для Ozon ООО (OZltd)-------------------------------------->
+<!------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------->
+      <div id="OZltd" class="tabcontent">
+        <h3>Калькулятор для OZON ООО</h3>
+
+        <div class="subtab">
+          <button class="subtablinks" onclick="openSubTab(event, 'OZltdPrice')">Price</button>
+          <button class="subtablinks" onclick="openSubTab(event, 'OZltdProfit')">Profit</button>
+        </div>
+
+<!----------------------------------------Расчет цены (Кнопка Price)------------------------------------->
+        <form id="priceForm-OZltdPrice" action="{{ url_for('calculate', tab='OZltd', subtab='Price') }}" method="post">
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Совокупный процент комиссий OZON</h4>
+              <input type="text" name="cperc" oninput="checkFormFields('OZltdPrice')">
+          </div>
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Фиксированная часть комиссий OZON</h4>
+              <input type="text" name="cfix" oninput="checkFormFields('OZltdPrice')">
+          </div>
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Налог для ИП в процентах</h4>
+              <input type="text" name="tax" oninput="checkFormFields('OZltdPrice')">
+          </div>
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Риски для ИП в процентах</h4>
+              <input type="text" name="risk" oninput="checkFormFields('OZltdPrice')">
+          </div>
+
+
+          <div class="input_fields">
+            <h4>Себестоимость единицы</h4>
+            <input type="text" name="cost_per_one" oninput="checkFormFields('OZltdPrice')">
+          </div>
+
+
+          <div class="input_fields">
+              <h4>Желаемый процент прибыли от себестоимости</h4>
+              <input type="text" name="des_percent" oninput="checkFormFields('OZltdPrice')">
+          </div>
+
+          <!--Колчество, стоимость труда, стоимость упаковки, объем упаковки-->
+          <div id="dictionary-container-OZsolePrice">
+            <h4>Комплекты</h4>
+            <div class="dictionary">
+              <label for="count_per_one">Единиц в одном товаре:</label>
+              <input type="text" name="count_per_one" oninput="checkFormFields('OZltdPrice')">
+              <label for="box_wage_cost">Стоимость труда на упаковку:</label>
+              <input type="text" name="box_wage_cost" oninput="checkFormFields('OZltdPrice')">
+              <label for="box_cost">Стоимость упаковки:</label>
+              <input type="text" name="box_cost" oninput="checkFormFields('OZltdPrice')">
+              <label for="box_size">Размер упаковки:</label>
+              <input type="text" name="box_size" oninput="checkFormFields('OZltdPrice')">
+              <button type="button" onclick="removeDictionaryElement(this, 'OZltdPrice')">Удалить</button>
+            </div>
+          </div>
+          <button type="button" onclick="addDictionaryElement('OZltdPrice')">Добавить</button>
+          
+          <!--Кнопка Рассчитать-->
+          <div>
+            <input id="submitButton" type="submit" value="Расcчитать" disabled>
+          </div/
+
+        </form>
+<!------------------------------------------------------------------------------------------------------->
+<!------------------------------------Расчет профита (Кнопка Profit)------------------------------------->
+        <form id="priceForm-OZltdPrice" action="{{ url_for('calculate', tab='OZltd', subtab='Profit') }}" method="post">
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Совокупный процент комиссий OZON</h4>
+              <input type="text" name="cperc" oninput="checkFormFields('OZltdProfit')">
+          </div>
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Фиксированная часть комиссий OZON</h4>
+              <input type="text" name="cfix" oninput="checkFormFields('OZltdProfit')">
+          </div>
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Налог для ИП в процентах</h4>
+              <input type="text" name="tax" oninput="checkFormFields('OZltdProfit')">
+          </div>
+
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Риски для ИП в процентах</h4>
+              <input type="text" name="risk" oninput="checkFormFields('OZltdProfit')">
+          </div>
+
+
+          <div class="input_fields">
+              <h4>Стоимость труда на упаковку</h4>
+              <input type="text" name="box_wage_cost" oninput="checkFormFields('OZltdProfit')">
+          </div>
+
+
+          <div class="input_fields">
+              <h4>Стоимость упаковки</h4>
+              <input type="text" name="box_cost" oninput="checkFormFields('OZltdProfit')">
+          </div>
+
+          
+          <div class="input_fields">
+              <h4>Размер упаковки</h4>
+              <input type="text" name="box_size" oninput="checkFormFields('OZltdProfit')">
+          </div>
+
+
+          <div class="input_fields">
+            <h4>Себестоимость единицы</h4>
+            <input type="text" name="cost_per_one" oninput="checkFormFields('OZltdProfit')">
+          </div>
+
+
+          <div class="input_fields">
+              <h4>Цена</h4>
+              <input type="text" name="current_price" oninput="checkFormFields('OZltdProfit')">
+          </div>
+
+
+          <div class="input_fields">
+              <h4>Единиц в одном товаре</h4>
+              <input type="text" name="count_per_one" oninput="checkFormFields('OZltdProfit')">
+          </div>
+          
+          <!--Кнопка Рассчитать-->
+          <div>
+            <input id="submitButton" type="submit" value="Расcчитать" disabled>
+          </div/
+        </form>
+      </div>
+<!------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------->
     </main>
-
-
 <!----------------footer--------------------------------------------------------------------------------->
     <footer>
       <p>developed by: Roman Balashov</p>
