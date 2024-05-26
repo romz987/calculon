@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 2% 0 0 2%;
+  background-color: #F3F3F3;
+  color: #0C2542;
+}
+
+/* MENU */
+nav {
+  width: 98%;
+	margin-top: 1%;
+	font-family: 'Rubik', sans-serif;
+	text-align: left;
+	display: block;
+}
+
+nav ul {
+	padding: 0.25em;
+	background: #433673;
+	border-radius: 3px;
+}
+
+nav a {
+	font-weight: bold;
+	color: #F3F3F3;
+	text-decoration: none;
+}
+
+nav li {
+  padding: 1%;
+	display: inline;
+}
+
+nav a.actmenu:hover {
+	color: #D94343; 
+	transition: 0.20s linear;
+}
+
+
+/* КНОПКИ */
+/* Скрыть все содержимое по умолчанию, кроме первого */
+.tabcontent {
+  display: none;
+}
+
+/* Кнопки вкладок */
+.tab button {
+  font-weight: bold;
+  background-color: #685C79;
+  color: #F3F3F3;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  transition: 0.3s;
+}
+
+/* Выбранная кнопка */
+.tab button.active {
+  background-color: #AC6C82;
+}
+
+/* Контейнер вкладок */
+.tab {
+  overflow: hidden;
+}
+
+/* Скрываем элемент div class="output" */
+.output {
+  display: none;
+}
+
+div.result {
+  border: 1px solid black;
+  width: 700px;
+  height: 200px;
+}
+
+div.input_fields {
+  background-color: #D9D9D9;
+  margin: 1% 0 0 0;
+  padding: 0.5%;
+  border-radius: 5px;
+  width: 520px;   
+}
+
+div.dictionary {
+  width: 1550px;
+  margin: 0.5% 0;
+  padding: 0.5%;
+  background-color: #D9D9D9;
+  border-radius: 5px;
+}
