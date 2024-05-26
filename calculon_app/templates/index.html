@@ -15,9 +15,9 @@
 
     <header><h1>Calculon_</h1></header>
 
+<!------------------------------------------------------------------------------------------------------>
     <main>
-
-<!----------------Главное меню------------------------------------------------------------------------->
+<!-------------------------------------------Главное меню----------------------------------------------->
       <nav>
         <ul>
           <li>Калькулятор</li>
@@ -27,7 +27,7 @@
       </nav>
 
 
-<!----------------Кнопки режима рассчетов--------------------------------------------------------------->
+<!--------------------------------------Кнопки режима рассчетов----------------------------------------->
       <div class="tab">
         <button class="tablinks" onclick="openTab(event, 'WBsole')">Wildberries ИП</button>
         <button class="tablinks" onclick="openTab(event, 'WBltd')">Wildberries ООО</button>
@@ -35,10 +35,63 @@
         <button class="tablinks" onclick="openTab(event, 'OZltd')">OZON ООО</button>
       </div>
 
+<!----------------------------------Расчеты для Wildberries ИП (WBsole)---------------------------------->
+<!---------------------------------------------Расчет цены----------------------------------------------->
+      <div id="WBsole" class="tabcontent">
+        <h3>Калькулятор для Wildberries ИП</h3>
+
+        <div class="subtab">
+          <button class="subtablinks" onclick="openSubTab(event, 'WBsolePrice')">Price</button>
+          <button class="subtablinks" onclick="openSubTab(event, 'WBsoleProfit')">Profit</button>
+        </div>
+
+        <!--Установить значение по умолчанию-->
+        <div class="input_fields">
+            <h4>Совокупный процент комиссий Wildberries</h4>
+            <input type="text" name="cperc" oninput="checkFormFields('WBsolePrice')">
+        </div>
+
+        <!--Установить значение по умолчанию-->
+        <div class="input_fields">
+            <h4>Фиксированная часть комиссий Wildberries</h4>
+            <input type="text" name="cfix" oninput="checkFormFields('WBsolePrice')">
+        </div>
+
+        <!--Установить значение по умолчанию-->
+        <div class="input_fields">
+            <h4>Налог для ИП в процентах</h4>
+            <input type="text" name="tax" oninput="checkFormFields('WBsolePrice')">
+        </div>
+
+        <!--Установить значение по умолчанию-->
+        <div class="input_fields">
+            <h4>Риски для ИП в процентах</h4>
+            <input type="text" name="risk" oninput="checkFormFields('WBsolePrice')">
+        </div>
+
+
+        <div class="input_fields">
+          <h4>Себестоимость единицы</h4>
+          <input type="text" name="cost_per_one" oninput="checkFormFields('WBsolePrice')">
+        </div>
+
+
+        <div class="input_fields">
+            <h4>Желаемый процент прибыли от себестоимости</h4>
+            <input type="text" name="des_percent" oninput="checkFormFields('WBsolePrice')">
+        </div>
+
+        <!--Колчество, стоимость труда, стоимость упаковки, объем упаковки-->
+
+
+
+
+<!------------------------------------------------------------------------------------------------------->
+
     </main>
 
 
-<!----------------footer-------------------------------------------------------------------------------->
+<!----------------footer--------------------------------------------------------------------------------->
     <footer>
       <p>developed by: Roman Balashov</p>
     </footer>
