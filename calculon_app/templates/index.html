@@ -36,7 +36,7 @@
       </div>
 
 <!----------------------------------Расчеты для Wildberries ИП (WBsole)---------------------------------->
-<!---------------------------------------------Расчет цены----------------------------------------------->
+<!------------------------------------------------------------------------------------------------------->
       <div id="WBsole" class="tabcontent">
         <h3>Калькулятор для Wildberries ИП</h3>
 
@@ -45,47 +45,70 @@
           <button class="subtablinks" onclick="openSubTab(event, 'WBsoleProfit')">Profit</button>
         </div>
 
-        <!--Установить значение по умолчанию-->
-        <div class="input_fields">
-            <h4>Совокупный процент комиссий Wildberries</h4>
-            <input type="text" name="cperc" oninput="checkFormFields('WBsolePrice')">
-        </div>
+<!----------------------------------------Расчет цены (Кнопка Price)------------------------------------->
+        <form id="priceForm-WBsolePrice" action="{{ url_for('calculate', tab='WBsole', subtab='Price') }}" method="post">
 
-        <!--Установить значение по умолчанию-->
-        <div class="input_fields">
-            <h4>Фиксированная часть комиссий Wildberries</h4>
-            <input type="text" name="cfix" oninput="checkFormFields('WBsolePrice')">
-        </div>
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Совокупный процент комиссий Wildberries</h4>
+              <input type="text" name="cperc" oninput="checkFormFields('WBsolePrice')">
+          </div>
 
-        <!--Установить значение по умолчанию-->
-        <div class="input_fields">
-            <h4>Налог для ИП в процентах</h4>
-            <input type="text" name="tax" oninput="checkFormFields('WBsolePrice')">
-        </div>
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Фиксированная часть комиссий Wildberries</h4>
+              <input type="text" name="cfix" oninput="checkFormFields('WBsolePrice')">
+          </div>
 
-        <!--Установить значение по умолчанию-->
-        <div class="input_fields">
-            <h4>Риски для ИП в процентах</h4>
-            <input type="text" name="risk" oninput="checkFormFields('WBsolePrice')">
-        </div>
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Налог для ИП в процентах</h4>
+              <input type="text" name="tax" oninput="checkFormFields('WBsolePrice')">
+          </div>
 
-
-        <div class="input_fields">
-          <h4>Себестоимость единицы</h4>
-          <input type="text" name="cost_per_one" oninput="checkFormFields('WBsolePrice')">
-        </div>
+          <!--Установить значение по умолчанию-->
+          <div class="input_fields">
+              <h4>Риски для ИП в процентах</h4>
+              <input type="text" name="risk" oninput="checkFormFields('WBsolePrice')">
+          </div>
 
 
-        <div class="input_fields">
-            <h4>Желаемый процент прибыли от себестоимости</h4>
-            <input type="text" name="des_percent" oninput="checkFormFields('WBsolePrice')">
-        </div>
-
-        <!--Колчество, стоимость труда, стоимость упаковки, объем упаковки-->
+          <div class="input_fields">
+            <h4>Себестоимость единицы</h4>
+            <input type="text" name="cost_per_one" oninput="checkFormFields('WBsolePrice')">
+          </div>
 
 
+          <div class="input_fields">
+              <h4>Желаемый процент прибыли от себестоимости</h4>
+              <input type="text" name="des_percent" oninput="checkFormFields('WBsolePrice')">
+          </div>
 
+          <!--Колчество, стоимость труда, стоимость упаковки, объем упаковки-->
+          <div id="dictionary-container-WBsolePrice">
+            <h4>Комплекты</h4>
+            <div class="dictionary">
+              <label for="count_per_one">Единиц в одном товаре:</label>
+              <input type="text" name="count_per_one" oninput="checkFormFields('WBsolePrice')">
+              <label for="box_wage_cost">Стоимость труда на упаковку:</label>
+              <input type="text" name="box_wage_cost" oninput="checkFormFields('WBsolePrice')">
+              <label for="box_cost">Стоимость упаковки:</label>
+              <input type="text" name="box_cost" oninput="checkFormFields('WBsolePrice')">
+              <label for="box_size">Размер упаковки:</label>
+              <input type="text" name="box_size" oninput="checkFormFields('WBsolePrice')">
+              <button type="button" onclick="removeDictionaryElement(this, 'WBsolePrice')">Удалить</button>
+            </div>
+          </div>
+          <button type="button" onclick="addDictionaryElement('WBsolePrice')">Добавить</button>
+          
+          <!--Кнопка Рассчитать-->
+          <div>
+            <input id="submitButton" type="submit" value="Расcчитать" disabled>
+          </div/
 
+        </form>
+
+      </div>
 <!------------------------------------------------------------------------------------------------------->
 
     </main>
