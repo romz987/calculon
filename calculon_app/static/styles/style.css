@@ -38,6 +38,38 @@ nav a.actmenu:hover {
 	transition: 0.20s linear;
 }
 
+div.result {
+  border: 1px solid black;
+  width: 700px;
+  height: 200px;
+}
+
+div.input_fields {
+  background-color: #D9D9D9;
+  margin: 1% 0 0 0;
+  padding: 0.5%;
+  border-radius: 5px;
+  width: 520px;   
+}
+
+div.dictionary {
+  width: 1550px;
+  margin: 0.5% 0;
+  padding: 0.5%;
+  background-color: #D9D9D9;
+  border-radius: 5px;
+}
+
+/* Скрываем элемент div class="output" */
+.output {
+  margin: 10px 0 25px 0;
+  display: none;
+}
+
+.output p {
+  padding-left: 25px;
+}
+
 
 /* КНОПКИ */
 /* Скрыть все содержимое по умолчанию, кроме первого */
@@ -68,29 +100,11 @@ nav a.actmenu:hover {
   overflow: hidden;
 }
 
-/* Скрываем элемент div class="output" */
-.output {
-  display: none;
-}
 
-div.result {
-  border: 1px solid black;
-  width: 700px;
-  height: 200px;
-}
-
-div.input_fields {
-  background-color: #D9D9D9;
-  margin: 1% 0 0 0;
-  padding: 0.5%;
-  border-radius: 5px;
-  width: 520px;   
-}
-
-div.dictionary {
-  width: 1550px;
-  margin: 0.5% 0;
-  padding: 0.5%;
-  background-color: #D9D9D9;
-  border-radius: 5px;
+/* Подвальчик */  
+footer::before {
+  content: "";
+  display: block;
+  width: 98%;
+  border-top: 1.32px solid #363636;
 }
