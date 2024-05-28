@@ -1,34 +1,49 @@
-// Функция открытия главной вкладки
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelector(".tablinks").click();
+});
+
+// Функция открытия вкладки==========================================================================
 function openTab(evt, tabName) {
   closeSubTabs(); // Закрываем все субвкладки перед открытием новой вкладки
   var i, tabcontent, tablinks;
+
+  // Скрываем все табы
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";
   }
+
+  // Удаляем класс 'active' со всех кнопок табов
   tablinks = document.getElementsByClassName("tablinks");
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
+
+  // Отображаем текущий таб и добавляем класс 'active' к текущей кнопке
   document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.className += "active";
+  evt.currentTarget.className += " active";
 
   // Автоматически открываем субвкладку "Price"
-  openSubTab(evt, tabName + "Price");
+  openSubTab(null, tabName + "Price");
 }
 
-// Функция открытия субвкладки
+// Функция открытия субвкладки=========================================================================
 function openSubTab(event, subTabName) {
-  closeSubTabs();
   var i, subtablinks, subtabcontent;
+
+  // Скрываем все субтабы
   subtabcontent = document.getElementsByClassName("subtabcontent");
   for (i = 0; i < subtabcontent.length; i++) {
     subtabcontent[i].style.display = "none";
   }
+
+  // Удаляем класс 'active' со всех субвкладок
   subtablinks = document.getElementsByClassName("subtablinks");
   for (i = 0; i < subtablinks.length; i++) {
     subtablinks[i].className = subtablinks[i].className.replace(" active", "");
   }
+
+  // Отображаем текущую субвкладку и добавляем класс 'active' к текущей кнопке
   document.getElementById(subTabName).style.display = "block";
   if (event) {
     event.currentTarget.className += " active";
@@ -38,6 +53,7 @@ function openSubTab(event, subTabName) {
   document.querySelector(".output").style.display = "block";
 }
 
+// Функция обработки полей комплектов===================================================================
 function addDictionaryElement(subTabId) {
   var container = document.getElementById("dictionary-container-" + subTabId);
 
@@ -90,7 +106,14 @@ function closeSubTabs() {
   }
 }
 
-// Установить отображение первой вкладки и субвкладки "Price" при загрузке страницы
+
+// Функция очистки содержимого .output
+function clearOutput() {
+  var output = document.querySelector(".output .result");
+  output.innerHTML = "";
+}
+
+// Привязка функции очистки к кнопке "Clear"
 document.addEventListener("DOMContentLoaded", function () {
-  document.querySelector(".tablinks").click();
+  document.getElementById("clearButton").addEventListener("click", clearOutput);
 });
