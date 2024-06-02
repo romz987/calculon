@@ -1,21 +1,22 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // Инициализация первой вкладки
   document.querySelector(".tablinks").click();
+  // Привязка функции очистки к кнопке "Clear"
+  document.getElementById("clearButton").addEventListener("click", clearOutput);
 });
 
-// Функция открытия вкладки==========================================================================
 function openTab(evt, tabName) {
   closeSubTabs(); // Закрываем все субвкладки перед открытием новой вкладки
-  var i, tabcontent, tablinks;
+  var tabcontent = document.getElementsByClassName("tabcontent");
+  var tablinks = document.getElementsByClassName("tablinks");
 
   // Скрываем все табы
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
+  for (var i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";
   }
 
   // Удаляем класс 'active' со всех кнопок табов
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
+  for (var i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
 
@@ -23,37 +24,37 @@ function openTab(evt, tabName) {
   document.getElementById(tabName).style.display = "block";
   evt.currentTarget.className += " active";
 
-  // Автоматически открываем субвкладку "Price"
-  openSubTab(null, tabName + "Price");
+  // Автоматически открываем первую субвкладку, если есть
+  var firstSubTab = document.querySelector(`#${tabName} .subtablinks`);
+  if (firstSubTab) {
+    firstSubTab.click();
+  }
 }
 
-// Функция открытия субвкладки=========================================================================
-function openSubTab(event, subTabName) {
-  var i, subtablinks, subtabcontent;
+function openSubTab(evt, subTabName) {
+  var subtabcontent = document.getElementsByClassName("subtabcontent");
+  var subtablinks = document.getElementsByClassName("subtablinks");
 
   // Скрываем все субтабы
-  subtabcontent = document.getElementsByClassName("subtabcontent");
-  for (i = 0; i < subtabcontent.length; i++) {
+  for (var i = 0; i < subtabcontent.length; i++) {
     subtabcontent[i].style.display = "none";
   }
 
   // Удаляем класс 'active' со всех субвкладок
-  subtablinks = document.getElementsByClassName("subtablinks");
-  for (i = 0; i < subtablinks.length; i++) {
+  for (var i = 0; i < subtablinks.length; i++) {
     subtablinks[i].className = subtablinks[i].className.replace(" active", "");
   }
 
   // Отображаем текущую субвкладку и добавляем класс 'active' к текущей кнопке
   document.getElementById(subTabName).style.display = "block";
-  if (event) {
-    event.currentTarget.className += " active";
+  if (evt) {
+    evt.currentTarget.className += " active";
   }
 
   // Отображение содержимого output только для активной субвкладки
   document.querySelector(".output").style.display = "block";
 }
 
-// Функция обработки полей комплектов===================================================================
 function addDictionaryElement(subTabId) {
   var container = document.getElementById("dictionary-container-" + subTabId);
 
@@ -61,15 +62,15 @@ function addDictionaryElement(subTabId) {
   newDiv.className = "dictionary";
 
   newDiv.innerHTML = `
-    <label for="count_per_one">Единиц в одном товаре:</label>
-    <input type="text" name="count_per_one" oninput="checkFormFields('${subTabId}')">
-    <label for="box_wage_cost">Стоимость труда на упаковку:</label>
-    <input type="text" name="box_wage_cost" oninput="checkFormFields('${subTabId}')">
+    <label for="count_per_one">Количество:</label>
+    <input id="count" type="text" name="count_per_one" value="1" oninput="checkFormFields('${subTabId}')">
+    <label for="box_wage_cost">Стоимость труда:</label>
+    <input id="wage" type="text" name="wage" oninput="checkFormFields('${subTabId}')">
     <label for="box_cost">Стоимость упаковки:</label>
-    <input type="text" name="box_cost" oninput="checkFormFields('${subTabId}')">
-    <label for="box_size">Размер упаковки:</label>
-    <input type="text" name="box_size" oninput="checkFormFields('${subTabId}')">
-    <button type="button" onclick="removeDictionaryElement(this, '${subTabId}')">Удалить</button>
+    <input id="cost_box" type="text" name="cost_box" oninput="checkFormFields('${subTabId}')">
+    <label for="box_size">Размеры упаковки:</label>
+    <input id="box_size" type="text" name="box_size" value="8*8*8" oninput="checkFormFields('${subTabId}')">
+    <button type="button" onclick="removeDictionaryElement(this, '${subTabId}')">&#128465;</button>
   `;
 
   container.appendChild(newDiv);
@@ -106,14 +107,8 @@ function closeSubTabs() {
   }
 }
 
-
 // Функция очистки содержимого .output
 function clearOutput() {
   var output = document.querySelector(".output .result");
   output.innerHTML = "";
 }
-
-// Привязка функции очистки к кнопке "Clear"
-document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("clearButton").addEventListener("click", clearOutput);
-});
