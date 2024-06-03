@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculon</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/reset.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/content.css') }}">
   </head>
 
   <body>
@@ -47,7 +49,7 @@
 
             <div id="WBsolePrice" class="subtabcontent">
 
-              <h4>Расчет цены</h4>
+              <h3>Расчет цены</h3>
               <form id="priceForm-WBsolePrice" action="{{ url_for('calculate', tab='WBsole', subtab='Price') }}" method="post">
 
                 <div class="flex_fields">                 

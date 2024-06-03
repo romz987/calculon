@@ -1,0 +1,195 @@
+/**********Flexbox***********/
+.flexmain {
+	border: 2px solid black;
+	width: 70%;
+	display: flex;
+
+}
+
+section.left {
+	width: 50%;
+}
+
+section.right {
+	width: 50%;
+}
+
+.tabcontent {
+	margin-top: 2%;
+}
+
+.tabcontent h3 {
+	font-weight: bold;
+	margin-bottom: 2%;
+}
+
+.subtabcontent {
+	margin-top: 2%;
+}
+
+
+/**********Кнопки************/
+div.tab {
+	height: 50px;
+	display: flex;
+}
+
+div.tab button {
+	flex: 1;
+}
+
+div.subtab {
+	height: 50px;
+	display: flex;
+}
+
+div.subtab button {
+	flex: 1;
+}
+
+.button_inner_space {
+	width: 1%;
+}
+
+#addDictButton {
+	margin-left: 15px;
+	border: 1px solid black;
+}
+
+#submitButton {
+	margin-top: 30px;
+	width: 180px;
+	height: 40px;
+}
+
+#clearButton {
+	margin-left: 85%;
+	margin-top: 2%;
+	width: 10%;
+}
+
+
+/**********Плашки************/
+.flex_fields {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+div.input_fields,
+div.input_fields_right {
+    width: 48%;
+    border-radius: 10px;
+    padding: 10px 0px 10px 10px;
+    margin-top: 1%;
+    background: #E0E0E0;
+    box-shadow: 1px 1px 3px grey;
+}
+
+div.input_fields h4,
+div.input_fields_right h4 {
+	margin-bottom: 10px;
+}
+
+div.input_fields_right {
+    margin-left: 1%;
+}
+
+#cperc {
+	width: 75px;
+}
+
+#cfix {
+	width: 75px;
+}
+
+#tax {
+	width: 75px;
+}
+
+#risk {
+	width: 75px;
+}
+
+#cost_per_one {
+	width: 75px;
+}
+
+#des_percent {
+	width: 75px;
+}
+
+#wageProfit {
+  width: 75px;
+}
+
+#cost_boxProfit {
+  width: 75px;
+}
+
+#countProfit {
+  width: 75px;
+}
+
+#priceProfit {
+  width: 75px;
+}
+
+#box_sizeProfit {
+  width: 75px;
+}
+
+
+/**********Комплекты*********/
+.dictionary {
+	width: 99%;
+  background: #E0E0E0;
+  box-shadow: 1px 1px 2px gray;
+	border-radius: 10px;
+	padding: 1.5% 0 1.5% 1%;
+	margin-bottom: 1%;
+}
+
+.dictionary input {
+	margin-right: 1%;
+}
+
+.dictionary:last-child {
+	margin-bottom: 0px;
+}
+
+#count {
+	width: 40px;
+}
+
+#wage {
+	width: 20px;
+}
+
+#cost_box {
+	width: 20px;
+}
+
+#box_size {
+	width: 60px;
+}
+
+
+/**********Результат*********/
+div.output_field h3 {
+		margin-bottom: 3%;
+}
+
+div.result {
+	margin-left: 1%;
+	border: 3px double grey;
+	border-radius: 10px;
+	height: 405px;
+}
+
+
+/**********Картинка**********/
+div.advert {
+	margin-left: 1%;
+	height: 15.6%;
+	border: 3px dotted grey;
+}
