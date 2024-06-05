@@ -19,7 +19,7 @@ def calculate():
         return "Invalid request", 400
     
     # Тестим
-    result = calc.entry_test(tab, subtab, request.form)
+    result = calc.entry_point(tab, subtab, request.form)
 
     # Считаем
     # result = calc.entry_point(tab, subtab, request.form)

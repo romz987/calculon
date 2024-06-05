@@ -62,12 +62,12 @@ function addDictionaryElement(subTabId) {
   newDiv.className = "dictionary";
 
   newDiv.innerHTML = `
-    <label for="count_per_one">Единиц:</label>
-    <input id="count" type="text" name="count_per_one" value="1" oninput="checkFormFields('${subTabId}')">
-    <label for="box_wage_cost">Стоимость труда:</label>
-    <input id="wage" type="text" name="wage" oninput="checkFormFields('${subTabId}')">
-    <label for="box_cost">Стоимость упаковки:</label>
-    <input id="cost_box" type="text" name="cost_box" oninput="checkFormFields('${subTabId}')">
+    <label for="count">Единиц:</label>
+    <input id="count" type="text" name="count" oninput="checkFormFields('${subTabId}')">
+    <label for="wage">Стоимость труда:</label>
+    <input id="wage" type="text" name="wage" value="8" oninput="checkFormFields('${subTabId}')">
+    <label for="cost_box">Стоимость упаковки:</label>
+    <input id="cost_box" type="text" name="cost_box" value="8" oninput="checkFormFields('${subTabId}')">
     <label for="box_size">Размеры упаковки:</label>
     <input id="box_size" type="text" name="box_size" value="8*8*8" oninput="checkFormFields('${subTabId}')">
     <button type="button" onclick="removeDictionaryElement(this, '${subTabId}')">&#128465;</button>
