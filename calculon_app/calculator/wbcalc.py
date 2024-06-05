@@ -22,7 +22,6 @@ class WBCalc():
         return result
 
 
-
     def wbprice_request(self, stuff):
         """
         Считаем цену для Wildberries ИП
