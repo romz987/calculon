@@ -105,7 +105,7 @@ class Calculon(WBCalc, OZCalc):
 
         # Вызываем
         if method:
-            result = method(stuff)
+            result = method(stuff, tab)
         else:
             print('Error in tab or subtab')
             result = 'No such func'

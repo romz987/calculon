@@ -22,7 +22,26 @@ class WBCalc():
         return result
 
 
-    def wbprice_request(self, stuff):
+    def _logistics_wb(self, package):
+        """
+        Считаем цену логистики в зависимости
+        от объема упаковки
+
+        :param package: объем в литрах
+
+        :return: цена
+        """
+        if package < 5:
+            factor = 5
+        else:
+            factor = 6
+
+        result = 30 + factor + factor * ((package - 0.01) // 1)
+
+        return result
+
+
+    def wbprice_request(self, stuff, tab):
         """
         Считаем цену для Wildberries ИП
         """
@@ -45,12 +64,16 @@ class WBCalc():
             cost_row = int(count) * float(cost_per_one)
             # Логистика
             package = self._pack_size(package)  
-            logistics = 0
+            logistics = self._logistics_wb(package)
 
             # Тест
             print(f'cost_row is: {cost_row}')
             print(f'package is: {package}')
+            print(f'logistics is: {logistics}')
+            print(f'tab is {tab}')
 
+            # Отправляем на расчет
+            # Пакуем данные в список? (да)
 
         answer="WBSPRICE_request"    
         return answer
@@ -61,7 +84,6 @@ class WBCalc():
         answer="WBSPROFIT_request"
 
         return answer
-
 
 
     def wblprofit_request(self, stuff):
