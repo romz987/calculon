@@ -1,6 +1,6 @@
 from flask import render_template, request, url_for, redirect 
 from calculon_app import app
-from calculon_app.calculator.main import Calculon 
+from calculon_app.calculator import Calculon
 
 calc = Calculon()
 
