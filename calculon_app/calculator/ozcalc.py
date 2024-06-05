@@ -1,20 +1,11 @@
 class OZCalc():
 
     
-    def ozsprice_request(self, stuff):
+    def ozprice_request(self, stuff):
 
         print(f'I got it! Stuff is: {stuff}')
 
         answer="OZSPRICE_request"
-
-        return answer
-
-
-    def ozlprice_request(self, stuff):
-
-        print(f'I got it! Stuff is: {stuff}')
-
-        answer="OZLPRICE_request"
 
         return answer
 

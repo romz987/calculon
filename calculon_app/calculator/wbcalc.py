@@ -23,7 +23,7 @@ class WBCalc():
 
 
 
-    def wbsprice_request(self, stuff):
+    def wbprice_request(self, stuff):
         """
         Считаем цену для Wildberries ИП
         """
@@ -38,7 +38,7 @@ class WBCalc():
             cperc, 
             cfix, 
             tax_percent, 
-            risk, 
+            risk,
             cost_per_one
         ) in stuff.items():
 
@@ -55,18 +55,6 @@ class WBCalc():
 
         answer="WBSPRICE_request"    
         return answer
-
-
-
-
-    def wblprice_request(self, stuff):
-
-        print(f'I got it! Stuff is: {stuff}')
-
-        answer="WBLPRICE_request"
-
-        return answer
-
 
 
     def wbsprofit_request(self, stuff):

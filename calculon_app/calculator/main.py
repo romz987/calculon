@@ -100,11 +100,6 @@ class Calculon(WBCalc, OZCalc):
 
         :return: 
         """
-        # Тест получения данных из форм
-        #print(tab)
-        #print(subtab)
-        #print(f'formdata is {formdata}')
-
         # Оборачиваем
         method = self.get_method(tab, subtab)
 
@@ -125,10 +120,10 @@ class Calculon(WBCalc, OZCalc):
         :return:
         """
         methods = {
-            "WBsole": {"Price": self.wbsprice_request, "Profit": self.wbsprofit_request},
-            "WBltd": {"Price": self.wblprice_request, "Profit": self.wblprofit_request},
-            "OZsole": {"Price": self.ozsprice_request, "Profit": self.ozsprofit_request},
-            "OZltd": {"Price": self.ozlprice_request, "Profit": self.ozlprofit_request}
+            "WBsole": {"Price": self.wbprice_request, "Profit": self.wbsprofit_request},
+            "WBltd": {"Price": self.wbprice_request, "Profit": self.wblprofit_request},
+            "OZsole": {"Price": self.ozprice_request, "Profit": self.ozsprofit_request},
+            "OZltd": {"Price": self.ozprice_request, "Profit": self.ozlprofit_request}
         }
 
         return methods.get(tab, {}).get(subtab, None)
