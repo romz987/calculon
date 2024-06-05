@@ -1,8 +1,9 @@
 from flask import request
 from calculon_app.calculator.wbcalc import WBCalc
+from calculon_app.calculator.ozcalc import OZCalc
 
 
-class Calculon(WBCalc):
+class Calculon(WBCalc, OZCalc):
 
 
     def __init__(self):
@@ -30,7 +31,7 @@ class Calculon(WBCalc):
 
     def price_repack(self, tab, subtab, formdata):
         """ 
-        Первичный расчет и переупаковка для вкладки Price
+        Переупаковка для вкладки Price
         """
         # Создаем словарь комплектов 
         stuff = {}
@@ -82,7 +83,7 @@ class Calculon(WBCalc):
 
     def profit_repack(self, tab, subtab, formdata):
         """ 
-        Первичный расчет и переупаковка для вкладки Profit
+        Переупаковка для вкладки Profit
         """
         result = 'profit_repack'
 
@@ -91,13 +92,13 @@ class Calculon(WBCalc):
 
     def routing(self, tab, subtab, stuff):
         """  
-        Точка входа
+        Роутинг на метод
 
         :param tab:
         :param subtab:
         :param stuff:
 
-        :return: строку результата 
+        :return: 
         """
         # Тест получения данных из форм
         #print(tab)
@@ -119,7 +120,7 @@ class Calculon(WBCalc):
 
     def get_method(self, tab, subtab):
         """
-        Создаем словарь функций
+        Словарь методов
 
         :return:
         """
@@ -135,33 +136,4 @@ class Calculon(WBCalc):
 
     
 
-    def ozsprice_request(self, stuff):
 
-        print(f'I got it! Stuff is: {stuff}')
-
-        answer="OZSPRICE_request"
-
-        return answer
-
-
-    def ozlprice_request(self, stuff):
-
-        print(f'I got it! Stuff is: {stuff}')
-
-        answer="OZLPRICE_request"
-
-        return answer
-
-
-    def ozsprofit_request(self, stuff):
-
-        answer="OZSPROFIT_request"
-
-        return answer
-
-
-    def ozlprofit_request(self, stuff):
-
-        answer="OZLPROFIT_request"
-
-        return answer
