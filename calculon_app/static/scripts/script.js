@@ -62,7 +62,7 @@ function addDictionaryElement(subTabId) {
   newDiv.className = "dictionary";
 
   newDiv.innerHTML = `
-    <label for="count_per_one">Количество:</label>
+    <label for="count_per_one">Единиц:</label>
     <input id="count" type="text" name="count_per_one" value="1" oninput="checkFormFields('${subTabId}')">
     <label for="box_wage_cost">Стоимость труда:</label>
     <input id="wage" type="text" name="wage" oninput="checkFormFields('${subTabId}')">

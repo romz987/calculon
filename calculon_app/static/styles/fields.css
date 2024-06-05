@@ -1,0 +1,116 @@
+/**********Плашки************/
+.flex_fields {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+div.input_fields,
+div.input_fields_right {
+    width: 47%;
+    border-radius: 10px;
+    padding: 10px 0px 10px 10px;
+    margin-top: 1%;
+    background: #E0E0E0;
+    box-shadow: 1px 1px 3px grey;
+}
+
+div.input_fields h4,
+div.input_fields_right h4 {
+	margin-bottom: 10px;
+}
+
+div.input_fields_right {
+    margin-left: 1%;
+}
+
+#cperc {
+	width: 75px;
+}
+
+#cfix {
+	width: 75px;
+}
+
+#tax {
+	width: 75px;
+}
+
+#risk {
+	width: 75px;
+}
+
+#cost_per_one {
+	width: 75px;
+}
+
+#des_percent {
+	width: 75px;
+}
+
+#wageProfit {
+  width: 75px;
+}
+
+#cost_boxProfit {
+  width: 75px;
+}
+
+#countProfit {
+  width: 75px;
+}
+
+#priceProfit {
+  width: 75px;
+}
+
+#box_sizeProfit {
+  width: 75px;
+}
+
+
+/**********Комплекты*********/
+.dictionary {
+	width: 99%;
+  background: #E0E0E0;
+  box-shadow: 1px 1px 2px gray;
+	border-radius: 10px;
+	padding: 1.5% 0 1.5% 1%;
+	margin-bottom: 1%;
+}
+
+.dictionary label {
+	margin-left: 1%;
+	font-size: 0.8rem;
+}
+
+.dictionary input {
+	margin-right: 1%;
+}
+
+.dictionary:last-child {
+	margin-bottom: 0px;
+}
+
+#complectHeader{
+  margin-top: 2%;
+}
+
+#count {
+	width: 40px;
+}
+
+#wage {
+	width: 20px;
+}
+
+#cost_box {
+	width: 20px;
+}
+
+#box_size {
+	width: 70px;
+}
+
+
+
+
