@@ -1,46 +1,6 @@
 class WBCalc():
 
 
-    def _pack_size(self, package):
-        """
-        Считаем объем упаковки из строки
-
-        :param package: строка с размером упаковки
-
-        :return: объем в милилитрах
-        """
-
-        # Преобразуем каждую часть строки в целое число
-        numbers = map(int, package.split('*'))          
-        result = 1
-        for number in numbers:
-            result *= number
-       
-        result = result / 1000
-
-
-        return result
-
-
-    def _logistics_wb(self, package):
-        """
-        Считаем цену логистики в зависимости
-        от объема упаковки
-
-        :param package: объем в литрах
-
-        :return: цена
-        """
-        if package < 5:
-            factor = 5
-        else:
-            factor = 6
-
-        result = 30 + factor + factor * ((package - 0.01) // 1)
-
-        return result
-
-
     def wbprice_request(self, stuff, tab):
         """
         Считаем цену для Wildberries ИП
@@ -91,4 +51,66 @@ class WBCalc():
         answer="WBLPROFIT_request"
 
         return answer
+
+
+    def _wb_calculate(self):
+        pass  
+
+
+    def _price_calc_sole(self):
+        pass 
+
+
+    def _profit_calc_sole(self):
+        pass 
+
+
+    def _price_calc_ltd(self):
+        pass 
+
+
+    def _profit_calc_ltd(self):
+        pass
+
+
+    def _pack_size(self, package):
+        """
+        Считаем объем упаковки из строки
+
+        :param package: строка с размером упаковки
+
+        :return: объем в милилитрах
+        """
+
+        # Преобразуем каждую часть строки в целое число
+        numbers = map(int, package.split('*'))          
+        result = 1
+        for number in numbers:
+            result *= number
+       
+        result = result / 1000
+
+
+        return result
+
+
+    def _logistics_wb(self, package):
+        """
+        Считаем цену логистики в зависимости
+        от объема упаковки
+
+        :param package: объем в литрах
+
+        :return: цена
+        """
+        if package < 5:
+            factor = 5
+        else:
+            factor = 6
+
+        result = 30 + factor + factor * ((package - 0.01) // 1)
+
+        return result
+
+
 

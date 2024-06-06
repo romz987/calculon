@@ -3,6 +3,49 @@ import math
 
 class OZCalc():
 
+    
+    def ozprice_request(self, stuff):
+
+        print(f'I got it! Stuff is: {stuff}')
+
+        answer="OZSPRICE_request"
+
+        return answer
+
+
+    def ozsprofit_request(self, stuff):
+
+        answer="OZSPROFIT_request"
+
+        return answer
+
+
+    def ozlprofit_request(self, stuff):
+
+        answer="OZLPROFIT_request"
+
+        return answer
+
+
+    def _oz_calculate(self):
+        pass 
+
+
+    def _price_calc_sole(self):
+        pass 
+
+
+    def _profit_calc_sole(self):
+        pass 
+
+
+    def _price_calc_ltd(self):
+        pass 
+
+
+    def _profit_calc_ltd(self):
+        pass
+
 
     def _pack_size(self, package):
         """
@@ -27,6 +70,7 @@ class OZCalc():
     def _logistics_oz(self, package):
         """
         Считаем цену логистики в зависимости
+
         от объема упаковки
 
         :param package: объем в литрах
@@ -59,26 +103,3 @@ class OZCalc():
             print('lastmile value error')
 
         return result
-
-    
-    def ozprice_request(self, stuff):
-
-        print(f'I got it! Stuff is: {stuff}')
-
-        answer="OZSPRICE_request"
-
-        return answer
-
-
-    def ozsprofit_request(self, stuff):
-
-        answer="OZSPROFIT_request"
-
-        return answer
-
-
-    def ozlprofit_request(self, stuff):
-
-        answer="OZLPROFIT_request"
-
-        return answer
