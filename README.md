@@ -3,17 +3,25 @@
 ```
 ├──docker/
 ├──calculon_app/
-    ├──assets/
-    ├──static/
-         ├──styles/
+       ├──static/
+            ├──assets/
+            ├──styles/
+              ├──reset.css
               ├──style.css
-         ├──scripts/
+              ├──content.css 
+              ├──buttons.css
+              ├──fields.css
+            ├──scripts/
               ├──scripts.js
     ├──templates/
               ├──index.html
     ├──__init__.py
     ├──routes.py
-    ├──calculator.py
+    ├──calculator/
+              ├──__init__.py
+              ├──main.py
+              ├──ozcalc.py
+              ├──wbcalc.py
  ├──README.md
 ```
 
