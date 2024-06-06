@@ -1,4 +1,64 @@
+import math 
+
+
 class OZCalc():
+
+
+    def _pack_size(self, package):
+        """
+        Считаем объем упаковки из строки
+
+        :param package: строка с размером упаковки
+
+        :return: объем в милилитрах
+        """
+
+        # Преобразуем каждую часть строки в целое число
+        numbers = map(int, package.split('*'))          
+        result = 1
+        for number in numbers:
+            result *= number
+       
+        result = result / 1000
+
+        return result
+
+
+    def _logistics_oz(self, package):
+        """
+        Считаем цену логистики в зависимости
+        от объема упаковки
+
+        :param package: объем в литрах
+
+        :return: цена
+        """
+        if package < 5:
+            result = 76
+        elif package > 5:
+            factor = 9
+            result = 76 + (math.ceil(package - 5) * 9)
+
+        return result
+
+
+    def _lastmile(price):
+        """ 
+        Считем последнюю милю
+        5.5% от цены, но не больше 500 руб
+
+        :param price: 
+        """
+        result = price * 0.055
+
+        if result < 500:
+            pass
+        elif result > 500:
+            result = 500 
+        else:
+            print('lastmile value error')
+
+        return result
 
     
     def ozprice_request(self, stuff):
