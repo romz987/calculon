@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 2% 0 0 2%;
+  background-color: #F3F3F3;
+  color: #0C2542;
+}
+
+/* MENU */
+nav {
+  width: 1400px;
+	margin-top: 1%;
+	font-family: 'Rubik', sans-serif;
+	text-align: left;
+	display: block;
+}
+
+nav ul {
+	padding: 0.25em;
+	background: #433673;
+	border-radius: 3px;
+}
+
+nav a {
+	font-weight: bold;
+	color: #F3F3F3;
+	text-decoration: none;
+}
+
+nav li {
+  padding: 1%;
+	display: inline;
+}
+
+nav a.actmenu:hover {
+	color: #D94343; 
+	transition: 0.20s linear;
+}
+
+
+
+/*******************************КНОПКИ*********************************/
+/* ГЛАВНЫЕ КНОПКИ*/  
+.flex-cont-main-buttons {
+	width: 800px;
+	height: 50px;
+	display: flex;	 
+}
+
+.tab {
+	flex-grow: 1;
+	display: flex;
+}
+
+.tab button {
+	width: 100%;
+}
+
+/*ДОПОЛНИТЕЛЬНЫЕ КНОПКИ*/  
+.flex-cont-add-buttons {
+	width: 800px;
+	height: 50px;
+	display: flex;	 
+}
+
+.subtab {
+	flex-grow: 1;
+	display: flex;
+}
+
+.subtab button {
+	width: 100%;
+}
+
+
+
+/*******************************ПОЛЯ*********************************/
+.main_flex {
+	width: 1400px;
+}
+
+.top_flex {
+	display: flex;
+}
+
+.left_flex {
+	width: 57%;
+}
+
+.right_flex {
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  padding-left: 25px;
+	width: 40%;
+}
+
+.bottom_flex {
+  padding: 0 0 0 0px;
+}
+
+/****************************ПОЛЯ ДЛЯ ВВОДА****************************/
+.input_fields {
+	border: 1px solid black;
+	border-radius: 10px;
+	margin: 0 0 10px 0;
+	padding: 0 0 10px 10px
+}
+
+
+/******************************КОМПЛЕКТЫ*******************************/
+.dictionary input {
+	width: 80px;
+	margin: 10px 35px 0 1px;
+}
+
+.dictionary {
+	width: 95%;
+	border: 1px solid black;
+	border-radius: 10px;
+	margin: 0 0 10px 0;
+	padding: 0 0 10px 10px;
+}
+
+/***************************КНОПКА РАССЧИТАТЬ**************************/
+.submitButtonclass {
+	margin: 40px 0;
+}
+
+
+/* Подвальчик */  
+footer::before {
+  content: "";
+  display: block;
+  width: 98%;
+  border-top: 1.32px solid #363636;
+}
+
+
+/****************************ВЫВОД ВРЕМЕННО******************************/
+#result-flex {
+  position: absolute;
+  top: 425px; /* Отступ сверху */
+  left: 891px; /* Отступ справа */
+}
+
+.result p {
+  margin: 0;
+  padding: 5px 0;
+  line-height: 1.5;
+}
