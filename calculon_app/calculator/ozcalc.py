@@ -13,16 +13,9 @@ class OZCalc():
         return answer
 
 
-    def ozsprofit_request(self, stuff):
+    def ozprofit_request(self, stuff):
 
         answer="OZSPROFIT_request"
-
-        return answer
-
-
-    def ozlprofit_request(self, stuff):
-
-        answer="OZLPROFIT_request"
 
         return answer
 

@@ -83,6 +83,8 @@ def price_calc_sole(cost_row, des_profit, price, logistics, cperc, risk, tax_per
     :param wage: Стоимость труда
 
     """
+    # Последняя миля
+    print(f'последняя миля: {lastmile(price)}')
     # Все комисии 
     comissions = price * (cperc / 100) + cfix + lastmile(price) + logistics
     # Налог
@@ -119,7 +121,7 @@ def profit_calc_sole(cost_row, des_profit, price, logistics, cperc, risk, tax_pe
     tax = price * (tax_percent / 100)
     # Риски
     risks = price * (risk / 100) 
-    # Все расходы
+    # Все расходшы
     all_costs = cost_row + comissions + tax + risks + cost_box + wage
     # Профит
     profit = price - all_costs
@@ -149,40 +151,61 @@ def lastmile(price):
 
 
 
-# Тест
-cost_row = 12.22
-des_percent = 40
-cperc = 19.5
-cfix = 30
-logistics = 76
-cost_box = 8
-wage = 8
-tax_percent = 7
-risk = 3
+# # Тест
+# cost_row = 38.08
+# des_percent = 20
+# cperc = 18.5
+# cfix = 0
+# logistics = 32
+# cost_box = 3
+# wage = 3
+# tax_percent = 7
+# risk = 3
+#
+#
+# list = [1, 2, 3, 4]
+# i
+# for i in list:
+#     row = cost_row * i 
+#     
+#     # Считаем 
+#     result = ozs_calculate(
+#         row,
+#         des_percent,
+#         cperc,
+#         cfix,
+#         logistics,
+#         cost_box,
+#         wage,
+#         tax_percent,
+#         risk
+#     )
+#
+#     result = round(result)
+#     
+#     # Выводим 
+#     print(f'Цена за {i} ед: {result} руб')
+#
+# # Прощаемся
+# print('buy')
 
 
-list = [4, 8, 12, 16, 20, 24]
 
-for i in list:
-    row = cost_row * i 
-    
-    # Считаем 
-    result = ozs_calculate(
-        row,
-        des_percent,
-        cperc,
-        cfix,
-        logistics,
-        cost_box,
-        wage,
-        tax_percent,
-        risk
-    )
+relust = profit_calc_sole(
+    cost_row = 38.08, 
+    des_profit = 20, 
+    price = 165, 
+    logistics = 32, 
+    cperc = 18.5, 
+    risk = 0, 
+    tax_percent = 7, 
+    cfix = 0, 
+    cost_box = 3, 
+    wage = 3)
 
-    result = round(result)
-    
-    # Выводим 
-    print(f'Цена за {i} ед: {result} руб')
+print(relust)
 
-# Прощаемся
-print('buy')
+
+
+
+

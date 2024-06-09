@@ -120,10 +120,10 @@ class Calculon(WBCalc, OZCalc):
         :return:
         """
         methods = {
-            "WBsole": {"Price": self.wbprice_request, "Profit": self.wbsprofit_request},
-            "WBltd": {"Price": self.wbprice_request, "Profit": self.wblprofit_request},
-            "OZsole": {"Price": self.ozprice_request, "Profit": self.ozsprofit_request},
-            "OZltd": {"Price": self.ozprice_request, "Profit": self.ozlprofit_request}
+            "WBsole": {"Price": self.wbprice_request, "Profit": self.wbprofit_request},
+            "WBltd": {"Price": self.wbprice_request, "Profit": self.wbprofit_request},
+            "OZsole": {"Price": self.ozprice_request, "Profit": self.ozprofit_request},
+            "OZltd": {"Price": self.ozprice_request, "Profit": self.ozprofit_request}
         }
 
         return methods.get(tab, {}).get(subtab, None)

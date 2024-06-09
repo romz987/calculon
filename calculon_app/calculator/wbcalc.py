@@ -1,4 +1,21 @@
+from collections import namedtuple
+
+
 class WBCalc():
+
+
+    # Используем именованный кортеж
+    calcdata_strct = namedtuple('calcdata_strct', [
+        'cost_row',
+        'des_profit',
+        'logistics',
+        'cperc',
+        'risk',
+        'tax_percent',
+        'cfix',
+        'cost_box',
+        'wage'
+    ])
 
 
     def wbprice_request(self, stuff, tab):
@@ -22,6 +39,7 @@ class WBCalc():
 
             # Себестоимость
             cost_row = int(count) * float(cost_per_one)
+            des_profit = cost_row * (float(des_percent) / 100)
             # Логистика
             package = self._pack_size(package)  
             logistics = self._logistics_wb(package)
@@ -32,36 +50,95 @@ class WBCalc():
             print(f'logistics is: {logistics}')
             print(f'tab is {tab}')
 
+            # Запаковываем
+            calcdata = self.calcdata_strct(
+                cost_row = cost_row,
+                des_profit = des_profit,
+                logistics = logistics,
+                cperc = cperc,
+                risk = risk,
+                tax_percent = tax_percent,
+                cfix = cfix,
+                cost_box = cost_box,
+                wage = wage
+            )
+
             # Отправляем на расчет
-            # Пакуем данные в список? (да)
+            result = self._wb_calculate(tab, calcdata)
+
 
         answer="WBSPRICE_request"    
         return answer
 
 
-    def wbsprofit_request(self, stuff):
+    def wbprofit_request(self, stuff):
 
         answer="WBSPROFIT_request"
 
         return answer
 
 
-    def wblprofit_request(self, stuff):
+    def _wb_calculate(self, tab, calcdata):
+        """ 
+        Логика нахождения цены
+        """
 
-        answer="WBLPROFIT_request"
+        tolerance = 0.1
+        max_iterations = 1
 
-        return answer
+        # Начальное приближение
+        price = (
+            (calcdata.cost_row + calcdata.logistics
+            + float(calcdata.wage) + float(calcdata.cost_box))
+            * (1 + (float(calcdata.cperc) / 100))
+        )
+
+        # print(type(calcdata.cost_row))
+        # print(type(calcdata.logistics))
+        # print(type(calcdata.wage))
+        # print(type(calcdata.cost_box))
+        # print(type(calcdata.cperc))
+        print(f'price is: {price}')
+
+        for i in range(1, max_iterations):
+
+            if tab == 'WBsole':
+                price = self._price_calc_sole(calcdata, price)
+                profit = self._price_calc_sole(calcdata, price)
+
+            elif tab == 'WBltd':
+                price = self._price_calc_ltd(calcdata, price)
+                profit = self._profit_calc_ltd(calcdata, price)
+
+            else:
+                print('TabError')
+                break
 
 
-    def _wb_calculate(self):
-        pass  
+
+  
 
 
-    def _price_calc_sole(self):
-        pass 
+    def _price_calc_sole(self, calcdata, price):
+        """ 
+        param cost_row 
+        param des_profit 
+        param price 
+        param logistics 
+        param cperc 
+        param risk
+        param tax_percent 
+        param cfix
+        param cost_box 
+        param wage
+        """
+        print(f'it works! Price is: {price}')
+        result = 100
+
+        return result
 
 
-    def _profit_calc_sole(self):
+    def _profit_calc_sole(self, calcdata, price):
         pass 
 
 

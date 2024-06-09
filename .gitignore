@@ -4,4 +4,4 @@ calculon_app/__pycache__
 
 docker/images
 
-#calculon_app/calculator/__pycache__
+calculon_app/calculator/__pycache__
