@@ -4,7 +4,7 @@ from collections import namedtuple
 class WBCalc():
 
 
-    # Используем именованный кортеж
+    # Cтруктура данных для запроса на расчет
     calcdata_strct = namedtuple('calcdata_strct', [
         'cost_row',
         'des_profit',
@@ -15,6 +15,18 @@ class WBCalc():
         'cfix',
         'cost_box',
         'wage'
+    ])
+
+    # Структура данных для ответа
+    answerdata_strct = namedtuple('answerdata_strct', [
+        'price',
+        'profit',
+        'des_profit',
+        'cost_row',
+        'comissions',
+        'logistics',
+        'tax',
+        'risk'
     ])
 
 
