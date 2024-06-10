@@ -82,9 +82,12 @@ class WBCalc():
         """ 
         Логика нахождения цены
         """
-
+        # Условия
         tolerance = 0.1
         max_iterations = 1
+
+        # Ожидаемый профит
+        des_profit = float(calcdata.des_profit)
 
         # Начальное приближение
         price = (
@@ -93,18 +96,13 @@ class WBCalc():
             * (1 + (float(calcdata.cperc) / 100))
         )
 
-        # print(type(calcdata.cost_row))
-        # print(type(calcdata.logistics))
-        # print(type(calcdata.wage))
-        # print(type(calcdata.cost_box))
-        # print(type(calcdata.cperc))
         print(f'price is: {price}')
 
         for i in range(1, max_iterations):
 
             if tab == 'WBsole':
                 price = self._price_calc_sole(calcdata, price)
-                profit = self._price_calc_sole(calcdata, price)
+                profit = self._profit_calc_sole(calcdata, price)
 
             elif tab == 'WBltd':
                 price = self._price_calc_ltd(calcdata, price)
@@ -113,6 +111,19 @@ class WBCalc():
             else:
                 print('TabError')
                 break
+
+            # Сраниваем
+            diff = abs(profit - des_profit)
+
+            if diff <= tolerance:
+                break 
+
+            if i >= max_iterations:
+                print('Не удалось найти решение')
+                price = 0 
+                break
+
+        return price
 
 
 
@@ -132,6 +143,11 @@ class WBCalc():
         param cost_box 
         param wage
         """
+        # print(type(calcdata.cost_row))
+        # print(type(calcdata.logistics))
+        # print(type(calcdata.wage))
+        # print(type(calcdata.cost_box))
+        # print(type(calcdata.cperc))
         print(f'it works! Price is: {price}')
         result = 100
 
