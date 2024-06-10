@@ -91,9 +91,15 @@ div.input_fields_right {
 	margin-bottom: 0px;
 }
 
-#complectHeader{
+.complectHeader{
   margin-top: 2%;
 }
+
+.profitHeader{
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
 
 #count {
 	width: 40px;
