@@ -12,7 +12,6 @@ class WBCalc():
         'cperc',
         'risk',
         'tax_percent',
-        'cfix',
         'cost_box',
         'wage'
     ])
@@ -43,8 +42,7 @@ class WBCalc():
             cost_box, 
             package, 
             des_percent, 
-            cperc, 
-            cfix, 
+            cperc,  
             tax_percent, 
             risk,
             cost_per_one
@@ -71,7 +69,6 @@ class WBCalc():
                 cperc = cperc,
                 risk = risk,
                 tax_percent = tax_percent,
-                cfix = cfix,
                 cost_box = cost_box,
                 wage = wage
             )
