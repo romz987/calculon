@@ -24,6 +24,7 @@ class WBCalc():
         """
         # Тест
         print(f'I got it! Stuff is: {stuff}')
+        results = []
         # Начинаем расчеты для каждого комплекта
         for count, (
             wage, 
@@ -65,10 +66,11 @@ class WBCalc():
 
             # Отправляем на расчет
             result = self._wb_calculate(tab, calcdata)
+            results.append(result)
 
 
         answer="WBSPRICE_request"    
-        return answer
+        return results
 
 
     def wbprofit_request(self, stuff):
@@ -84,7 +86,7 @@ class WBCalc():
         """
         # Условия
         tolerance = 0.1
-        max_iterations = 5
+        max_iterations = 1000
 
         # Ожидаемый профит
         des_profit = float(calcdata.des_profit)
@@ -123,6 +125,8 @@ class WBCalc():
                 price = 0 
                 break
 
+        price = round(price)
+
         return price
 
 
@@ -142,7 +146,7 @@ class WBCalc():
         tax = price * (float(calcdata.tax_percent) / 100)
         risk = price * (float(calcdata.risk) / 100)
         # Все расходы
-        all_costs = comissions + calcdata.logistics + float(calcdata.cost_box) + float(calcdata.wage) + risk + tax
+        all_costs = calcdata.cost_row + comissions + calcdata.logistics + float(calcdata.cost_box) + float(calcdata.wage) + risk + tax
         # Цена
         price = all_costs + calcdata.des_profit
 
@@ -163,7 +167,7 @@ class WBCalc():
         tax = price * (float(calcdata.tax_percent) / 100)
         risk = price * (float(calcdata.risk) / 100)
         # Все расходы
-        all_costs = comissions + calcdata.logistics + float(calcdata.cost_box) + float(calcdata.wage) + risk + tax
+        all_costs = calcdata.cost_row + comissions + calcdata.logistics + float(calcdata.cost_box) + float(calcdata.wage) + risk + tax
         # Профит
         profit = price - all_costs
 
