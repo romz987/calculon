@@ -52,9 +52,6 @@ class Calculon(WBCalc, OZCalc):
 
         cperc = request.form.get('cperc')
         print(f'cperc is: {cperc}')
-
-        cfix = request.form.get('cfix')
-        print(f'cfix is: {cfix}')
        
         tax_percent = request.form.get('tax')
         print(f'tax is: {tax_percent}')

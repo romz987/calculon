@@ -68,8 +68,6 @@ class WBCalc():
             result = self._wb_calculate(tab, calcdata)
             results.append(result)
 
-
-        answer="WBSPRICE_request"    
         return results
 
 
@@ -175,12 +173,52 @@ class WBCalc():
 
 
 
-    def _price_calc_ltd(self):
-        pass 
+    def _price_calc_ltd(self, calcdata, price):
+        """ 
+        Считает цену для WB ООО
+
+        :param calcdata: именованный кортеж со значениями полей
+        :param price: начальное приближение цены
+
+        :return: price
+        """
+        print(f'we in _price_calc_ltd method')
+
+        # Комиссии, налоги, риски
+        comissions = price * (float(calcdata.cperc) / 100)
+        risk = price * (float(calcdata.risk) / 100)
+        # Все расходы без рисков и налогов
+        all_costs = calcdata.cost_row + comissions + calcdata.logistics + float(calcdata.cost_box) + float(calcdata.wage)
+        # Считаем налог
+        tax = (price - all_costs) * (float(calcdata.tax_percent) / 100) 
+        # Цена
+        price = all_costs + tax + risk + calcdata.des_profit
+
+        return price
 
 
-    def _profit_calc_ltd(self):
-        pass
+    def _profit_calc_ltd(self, calcdata, price):
+        """ 
+        Считает профит для WB ООО
+
+        :param calcdata: именованный кортеж со значениями полей
+        :param price: начальное приближение цены
+
+        :return: price
+        """
+        print(f'we in _profit_calc_ltd method')
+
+        # Комиссии, налоги, риски
+        comissions = price * (float(calcdata.cperc) / 100)
+        risk = price * (float(calcdata.risk) / 100)
+        # Все расходы без рисков и налогов
+        all_costs = calcdata.cost_row + comissions + calcdata.logistics + float(calcdata.cost_box) + float(calcdata.wage)
+        # Считаем налог
+        tax = (price - all_costs) * (float(calcdata.tax_percent) / 100) 
+        # Цена
+        profit = price - (all_costs + tax + risk)
+
+        return price
 
 
     def _pack_size(self, package):
