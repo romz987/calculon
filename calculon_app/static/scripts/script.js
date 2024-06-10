@@ -69,7 +69,7 @@ function addDictionaryElement(subTabId) {
     <label for="cost_box">Стоимость упаковки:</label>
     <input id="cost_box" type="text" name="cost_box" value="8" oninput="checkFormFields('${subTabId}')">
     <label for="box_size">Размеры упаковки:</label>
-    <input id="box_size" type="text" name="box_size" value="8*8*8" oninput="checkFormFields('${subTabId}')">
+    <input id="box_size" type="text" name="box_size" value="11*10*10" oninput="checkFormFields('${subTabId}')">
     <button type="button" onclick="removeDictionaryElement(this, '${subTabId}')">&#128465;</button>
   `;
 
