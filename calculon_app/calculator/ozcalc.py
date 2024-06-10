@@ -63,8 +63,7 @@ class OZCalc():
     def _logistics_oz(self, package):
         """
         Считаем цену логистики в зависимости
-
-        от объема упаковки
+        от объема упаковки (7 руб для FBO)
 
         :param package: объем в литрах
 

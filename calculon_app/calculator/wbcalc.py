@@ -84,7 +84,7 @@ class WBCalc():
         """
         # Условия
         tolerance = 0.1
-        max_iterations = 1
+        max_iterations = 5
 
         # Ожидаемый профит
         des_profit = float(calcdata.des_profit)
@@ -126,36 +126,49 @@ class WBCalc():
         return price
 
 
-
-  
-
-
     def _price_calc_sole(self, calcdata, price):
         """ 
-        param cost_row 
-        param des_profit 
-        param price 
-        param logistics 
-        param cperc 
-        param risk
-        param tax_percent 
-        param cfix
-        param cost_box 
-        param wage
-        """
-        # print(type(calcdata.cost_row))
-        # print(type(calcdata.logistics))
-        # print(type(calcdata.wage))
-        # print(type(calcdata.cost_box))
-        # print(type(calcdata.cperc))
-        print(f'it works! Price is: {price}')
-        result = 100
+        Считает цену для WB ИП
 
-        return result
+        :param calcdata: именованный кортеж со значениями полей
+        :param price: начальное приближение цены
+
+        :return: price
+        """
+        print(f'we in _price_calc_sole method')
+
+        # Комиссии, налоги, риски
+        comissions = price * (float(calcdata.cperc) / 100)
+        tax = price * (float(calcdata.tax_percent) / 100)
+        risk = price * (float(calcdata.risk) / 100)
+        # Все расходы
+        all_costs = comissions + calcdata.logistics + float(calcdata.cost_box) + float(calcdata.wage) + risk + tax
+        # Цена
+        price = all_costs + calcdata.des_profit
+
+        return price
 
 
     def _profit_calc_sole(self, calcdata, price):
-        pass 
+        """ 
+        Считает профит для WB ИП
+
+        :param calcdata:  именованный кортеж со значениями полей
+        :param price: рассчитанная в _price_calc_sole цена
+        """
+        print(f'we in _profit_calc_sole method')
+
+        # Комиссии, налоги, риски
+        comissions = price * (float(calcdata.cperc) / 100)
+        tax = price * (float(calcdata.tax_percent) / 100)
+        risk = price * (float(calcdata.risk) / 100)
+        # Все расходы
+        all_costs = comissions + calcdata.logistics + float(calcdata.cost_box) + float(calcdata.wage) + risk + tax
+        # Профит
+        profit = price - all_costs
+
+        return profit
+
 
 
     def _price_calc_ltd(self):
