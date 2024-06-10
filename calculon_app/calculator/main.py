@@ -65,7 +65,7 @@ class Calculon(WBCalc, OZCalc):
 
         # Создаем словарь
         for count, wage, cost, size, in zip(count, wage, cost_box, box_size):
-            stuff[count] = [wage, cost, size, des_percent, cperc, cfix, tax_percent, risk, cost_per_one]
+            stuff[count] = [wage, cost, size, des_percent, cperc, tax_percent, risk, cost_per_one]
 
         # Проверяем созданный словарь 
         for count, values in stuff.items():
