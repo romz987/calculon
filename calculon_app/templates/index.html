@@ -257,6 +257,136 @@
           </div>  
 
 
+          <div id="OZsole" class="tabcontent">
+
+            <h3>Калькулятор для ОЗОН ИП</h3>
+
+            <div class="subtab">
+              <button class="subtablinks" onclick="openSubTab(event, 'OZsolePrice')">Цена</button>
+              <div class="button_inner_space"></div>
+              <button class="subtablinks" onclick="openSubTab(event, 'OZsoleProfit')">Профит</button>
+            </div>
+
+            <div id="OZsolePrice" class="subtabcontent">
+
+              <h3>Расчет цены</h3>
+              <form id="priceForm-OZsolePrice" action="{{ url_for('calculate', tab='OZsole', subtab='Price') }}" method="post">
+
+                <div class="flex_fields">
+
+                  <div id="radiofbsfbo" class="input_fields">
+                    <div class="radio_container">
+                      <input name="fbsfbo_button" type="radio" value="fbs">
+                      <label for="fbsfbo_button">FBS</label>
+                    </div>            
+                    <div class="radio_container">
+                      <input name="fbsfbo_button" type="radio" value="fbo">
+                      <label for="fbsfbo_button">FBO</label>
+                    </div>
+                  </div>
+
+                  <div class="input_fields_right">
+                    <h4>Обаботка отправления</h4>
+                    <input id="shipment" type="text" name="shipment" value="30" oninput="checkFormFields('OZsolePrice')"> RUB
+                  </div>
+
+                  <div class="input_fields">
+                    <h4>Проценты ОЗОН</h4>
+                    <input id="cperc" type="text" name="cperc" value="21" oninput="checkFormFields('OZsolePrice')"> %
+                  </div>
+
+                  <div class="input_fields_right">
+                    <h4>Налог для ИП в процентах</h4>
+                    <input id="tax"  type="text" name="tax" value="7" oninput="checkFormFields('OZsolePrice')"> %
+                  </div>
+
+                  <div class="input_fields">
+                    <h4>Риски в процентах</h4>
+                    <input id="risk" type="text" name="risk" value="3" oninput="checkFormFields('OZsolePrice')"> %
+                  </div>
+
+                  <div class="input_fields_right">
+                    <h4>Себестоимость единицы</h4>
+                    <input id="cost_per_one" type="text" name="cost_per_one" oninput="checkFormFields('OZsolePrice')"> RUB
+                  </div>
+
+                  <div class="input_fields">
+                    <h4>Профит</h4>
+                    <input id="des_percent" type="text" name="des_percent" oninput="checkFormFields('OZsolePrice')"> %
+                  </div>
+
+
+
+                </div>
+
+                <h3 class="complectHeader">Комплекты</h3>
+                <div id="dictionary-container-OZsolePrice">
+                  <div class="dictionary">
+                    <label for="count">Единиц:</label>
+                    <input id="count" type="text" name="count" value="1" oninput="checkFormFields('OZsolePrice')">
+                    <label for="wage">Стоимость труда:</label>
+                    <input id="wage" type="text" name="wage" value="8" oninput="checkFormFields('OZsolePrice')">
+                    <label for="cost_box">Стоимость упаковки:</label>
+                    <input id="cost_box" type="text" name="cost_box" value="8" oninput="checkFormFields('OZsolePrice')">
+                    <label for="box_size">Размеры упаковки:</label>
+                    <input id="box_size" type="text" name="box_size" value="11*10*10" oninput="checkFormFields('OZsolePrice')">
+                  </div>
+                </div>
+                <button id="addDictButton" type="button" onclick="addDictionaryElement('OZsolePrice')">&#10133;</button><br>
+                <input id="submitButton" type="submit" value="Расcчитать" disabled>
+              </form>
+            </div> 
+
+            <div id="OZsoleProfit" class="subtabcontent">
+              <h4 class="profitHeader">Расчет профита</h4>
+              <form id="profitForm-OZsoleProfit" action="{{ url_for('calculate', tab='OZsole', subtab='Profit') }}" method="post">
+
+                <div class="flex_fields">
+                    <div class="input_fields">
+                      <h4>Проценты Wildberries</h4>
+                      <input id="cperc" type="text" name="cperc" value="21" oninput="checkFormFields('OZsoleProfit')"> %
+                    </div>
+                    <div class="input_fields_right">
+                      <h4>Налог для ИП в процентах</h4>
+                      <input id="tax" type="text" name="tax" value="7" oninput="checkFormFields('OZsoleProfit')"> %
+                    </div>
+                    <div class="input_fields">
+                      <h4>Риски для ИП в процентах</h4>
+                      <input id="risk" type="text" name="risk" value="3" oninput="checkFormFields('OZsoleProfit')"> %
+                    </div>
+                    <div class="input_fields_right">
+                      <h4>Стоимость труда</h4>
+                      <input id="wageProfit" type="text" name="wage" oninput="checkFormFields('OZsoleProfit')"> RUB
+                    </div>
+                    <div class="input_fields">
+                      <h4>Стоимость упаковки</h4>
+                      <input id="cost_boxProfit" type="text" name="cost_box" oninput="checkFormFields('OZsoleProfit')"> RUB
+                    </div>
+                    <div class="input_fields_right">
+                      <h4>Размер упаковки</h4>
+                      <input id="box_sizeProfit" type="text" name="box_size" oninput="checkFormFields('OZsoleProfit')"><i>ex: 8*8*8</i>
+                    </div>
+                    <div class="input_fields">
+                      <h4>Себестоимость единицы</h4>
+                      <input id="cost_per_one" type="text" name="cost_per_one" oninput="checkFormFields('OZsoleProfit')"> RUB
+                    </div>
+                    <div class="input_fields_right">
+                      <h4>Количество</h4>
+                      <input id="countProfit" type="text" name="count" oninput="checkFormFields('OZsoleProfit')">
+                    </div>
+                    <div class="input_fields">
+                      <h4>Цена</h4>
+                      <input id="priceProfit" type="text" name="price" oninput="checkFormFields('OZsoleProfit')"> RUB
+                    </div>
+                    <div class="input_fields_right"></div>
+                    <input id="submitButton" type="submit" value="Рассчитать">
+                </div>
+              </form>
+            </div>
+          </div>
+
+
+
       </section>
 
       <section class="right">
