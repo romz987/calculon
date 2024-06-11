@@ -4,11 +4,11 @@ import math
 class OZCalc():
 
     
-    def ozprice_request(self, stuff):
+    def ozprice_request(self, stuff, tab):
 
         print(f'I got it! Stuff is: {stuff}')
 
-        answer="OZSPRICE_request"
+        answer="OZPRICE_request"
 
         return answer
 

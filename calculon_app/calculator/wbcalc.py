@@ -45,7 +45,9 @@ class WBCalc():
             cperc,  
             tax_percent, 
             risk,
-            cost_per_one
+            cost_per_one,
+            shipment,
+            fbso
         ) in stuff.items():
 
             # Себестоимость
@@ -179,7 +181,6 @@ class WBCalc():
         profit = price - all_costs
 
         return profit
-
 
 
     def _price_calc_ltd(self, calcdata, price):

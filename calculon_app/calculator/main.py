@@ -17,65 +17,59 @@ class Calculon(WBCalc, OZCalc):
         # Тест
         # result = 'hello, it works!'
         print(f'tab is:{tab}, subtab is:{subtab}')
-
+        print(f'formdata is: {formdata}')
         # Маршрутизация на переупаковку
         if subtab == 'Price':
-            result = self.price_repack(tab, subtab, formdata)
+            stuff = self.price_repack(formdata)
         elif subtab == 'Profit':
             result = self.profit_repack(tab, subtab, formdata)
         else: 
             print('Subtab error')
-        
-        return result
- 
-
-    def price_repack(self, tab, subtab, formdata):
-        """ 
-        Переупаковка для вкладки Price
-        """
-        # Создаем словарь комплектов 
-        stuff = {}
-
-        # Комплекты
-        count = request.form.getlist('count')
-        print(count)
-        wage = request.form.getlist('wage')
-        print(wage)
-        cost_box = request.form.getlist('cost_box')
-        print(cost_box)
-        box_size = request.form.getlist('box_size')
-        print(box_size)
-
-        # Остальное
-        des_percent = request.form.get('des_percent')    
-        print(f'des_percent is: {des_percent}')
-
-        cperc = request.form.get('cperc')
-        print(f'cperc is: {cperc}')
-       
-        tax_percent = request.form.get('tax')
-        print(f'tax is: {tax_percent}')
-       
-        risk = request.form.get('risk')
-        print(f'risk is: {risk}')
-
-        cost_per_one = request.form.get('cost_per_one')
-        print(f'cost_per_one is: {cost_per_one}')
-
-
-        # Создаем словарь
-        for count, wage, cost, size, in zip(count, wage, cost_box, box_size):
-            stuff[count] = [wage, cost, size, des_percent, cperc, tax_percent, risk, cost_per_one]
-
-        # Проверяем созданный словарь 
-        for count, values in stuff.items():
-            print(count, ":", values)
 
         # Отдаем словарь на расчеты 
         result = self.routing(tab, subtab, stuff) 
         
-        # result = 'PRICE REPACK'
         return result
+ 
+
+    def price_repack(self, formdata):
+        """ 
+        Переупаковка для дальнейшей маршрутизации.
+        Вкладка Price.
+
+        :param formdata: данные полей input
+
+        :return: словаль товаров stuff
+        """
+        # Создаем словарь комплектов 
+        stuff = {}
+
+        # Упаковываем
+        for count, wage, cost_box, size, in zip(
+            request.form.getlist('count'), 
+            request.form.getlist('wage'), 
+            request.form.getlist('cost_box'), 
+            request.form.getlist('box_size')
+        ):
+                stuff[count] = [
+                wage, 
+                cost_box, 
+                size, 
+                request.form.get('des_percent'), 
+                request.form.get('cperc'), 
+                request.form.get('tax'), 
+                request.form.get('risk'), 
+                request.form.get('cost_per_one'), 
+                request.form.get('shipment'),
+                request.form.get('fbsfbo_button')
+            ]
+
+        # Проверяем созданный словарь 
+        for count, values in stuff.items():
+            print(count, ":", values)
+        
+        # result = 'PRICE REPACK'
+        return stuff
 
 
     def profit_repack(self, tab, subtab, formdata):
@@ -124,8 +118,6 @@ class Calculon(WBCalc, OZCalc):
         }
 
         return methods.get(tab, {}).get(subtab, None)
-
-
     
 
 
