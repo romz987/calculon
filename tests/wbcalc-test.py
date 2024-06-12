@@ -1,6 +1,15 @@
+import logging
 from collections import namedtuple
+from colorama import init, Fore, Style
 
-# Используем именованный кортеж
+
+# Уровень логирования
+logging.basicConfig(level=logging.INFO)
+# Инициализируем coloram-у
+init(autoreset=True)
+
+
+# Cтруктура данных для запроса на расчет
 calcdata_strct = namedtuple('calcdata_strct', [
     'cost_row',
     'des_profit',
@@ -8,18 +17,34 @@ calcdata_strct = namedtuple('calcdata_strct', [
     'cperc',
     'risk',
     'tax_percent',
-    'cfix',
     'cost_box',
     'wage'
+])
+
+# Структура данных для ответа
+answerdata_strct = namedtuple('answerdata_strct', [
+    'price',
+    'profit',
+    'des_profit',
+    'cost_row',
+    'comissions',
+    'logistics',
+    'tax',
+    'risk'
 ])
 
 
 def wbprice_request(stuff, tab):
     """
-    Считаем цену для Wildberries ИП
+    Считаем цену для Wildberries
     """
     # Тест
-    print(f'I got it! Stuff is: {stuff}')
+    logging.info (
+        f'{Fore.BLUE}[wbcalc.py][wbprice_request] ' 
+        f'output:{Style.RESET_ALL}\nstuff is: {stuff}'
+    )
+
+    # Список для результатов
     results = []
     # Начинаем расчеты для каждого комплекта
     for count, (
@@ -27,11 +52,12 @@ def wbprice_request(stuff, tab):
         cost_box, 
         package, 
         des_percent, 
-        cperc, 
-        cfix, 
+        cperc,  
         tax_percent, 
         risk,
-        cost_per_one
+        cost_per_one,
+        shipment,
+        fbso
     ) in stuff.items():
 
         # Себестоимость
@@ -41,12 +67,6 @@ def wbprice_request(stuff, tab):
         package = _pack_size(package)  
         logistics = _logistics_wb(package)
 
-        # Тест
-        print(f'cost_row is: {cost_row}')
-        print(f'package is: {package}')
-        print(f'logistics is: {logistics}')
-        print(f'tab is {tab}')
-
         # Запаковываем
         calcdata = calcdata_strct(
             cost_row = cost_row,
@@ -55,7 +75,6 @@ def wbprice_request(stuff, tab):
             cperc = cperc,
             risk = risk,
             tax_percent = tax_percent,
-            cfix = cfix,
             cost_box = cost_box,
             wage = wage
         )
@@ -64,9 +83,14 @@ def wbprice_request(stuff, tab):
         result = _wb_calculate(tab, calcdata)
         results.append(result)
 
-
-    answer="WBSPRICE_request"    
     return results
+
+
+def wbprofit_request(stuff):
+
+    answer="WBSPROFIT_request"
+
+    return answer
 
 
 def _wb_calculate(tab, calcdata):
@@ -89,6 +113,7 @@ def _wb_calculate(tab, calcdata):
 
     print(f'price is: {price}')
 
+    # Расчет
     for i in range(1, max_iterations):
 
         if tab == 'WBsole':
@@ -128,7 +153,7 @@ def _price_calc_sole(calcdata, price):
 
     :return: price
     """
-    print(f'we in _price_calc_sole method')
+    #print(f'we in _price_calc_sole method')
 
     # Комиссии, налоги, риски
     comissions = price * (float(calcdata.cperc) / 100)
@@ -149,7 +174,7 @@ def _profit_calc_sole(calcdata, price):
     :param calcdata:  именованный кортеж со значениями полей
     :param price: рассчитанная в _price_calc_sole цена
     """
-    print(f'we in _profit_calc_sole method')
+    #print(f'we in _profit_calc_sole method')
 
     # Комиссии, налоги, риски
     comissions = price * (float(calcdata.cperc) / 100)
@@ -161,6 +186,54 @@ def _profit_calc_sole(calcdata, price):
     profit = price - all_costs
 
     return profit
+
+
+def _price_calc_ltd(calcdata, price):
+    """ 
+    Считает цену для WB ООО
+
+    :param calcdata: именованный кортеж со значениями полей
+    :param price: начальное приближение цены
+
+    :return: price
+    """
+    print(f'we in _price_calc_ltd method')
+
+    # Комиссии, налоги, риски
+    comissions = price * (float(calcdata.cperc) / 100)
+    risk = price * (float(calcdata.risk) / 100)
+    # Все расходы без рисков и налогов
+    all_costs = calcdata.cost_row + comissions + calcdata.logistics + float(calcdata.cost_box) + float(calcdata.wage)
+    # Считаем налог
+    tax = (price - all_costs) * (float(calcdata.tax_percent) / 100) 
+    # Цена
+    price = all_costs + tax + risk + calcdata.des_profit
+
+    return price
+
+
+def _profit_calc_ltd(calcdata, price):
+    """ 
+    Считает профит для WB ООО
+
+    :param calcdata: именованный кортеж со значениями полей
+    :param price: начальное приближение цены
+
+    :return: price
+    """
+    print(f'we in _profit_calc_ltd method')
+
+    # Комиссии, налоги, риски
+    comissions = price * (float(calcdata.cperc) / 100)
+    risk = price * (float(calcdata.risk) / 100)
+    # Все расходы без рисков и налогов
+    all_costs = calcdata.cost_row + comissions + calcdata.logistics + float(calcdata.cost_box) + float(calcdata.wage)
+    # Считаем налог
+    tax = (price - all_costs) * (float(calcdata.tax_percent) / 100) 
+    # Цена
+    profit = price - (all_costs + tax + risk)
+
+    return price
 
 
 def _pack_size(package):
@@ -206,8 +279,9 @@ def _logistics_wb(package):
 
 
 
+
 # Тест 
-stuff = {'1': ['8', '8', '10*10*10', '50', '21', '30', '7', '5', '100']}
+stuff = {'1': ['8', '8', '20*25*17', '50', '21', '7', '3', '150', [], []]}
 tab = 'WBsole'
 
 
