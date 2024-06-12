@@ -1,4 +1,12 @@
+import logging
 from collections import namedtuple
+from colorama import init, Fore, Style
+
+
+# Уровень логирования
+logging.basicConfig(level=logging.INFO)
+# Инициализируем coloram-у
+init(autoreset=True)
 
 
 class WBCalc():
@@ -31,10 +39,15 @@ class WBCalc():
 
     def wbprice_request(self, stuff, tab):
         """
-        Считаем цену для Wildberries ИП
+        Считаем цену для Wildberries
         """
         # Тест
-        print(f'I got it! Stuff is: {stuff}')
+        logging.info (
+            f'{Fore.BLUE}[wbcalc.py][wbprice_request] ' 
+            f'output:{Style.RESET_ALL}\nstuff is: {stuff}'
+        )
+
+        # Список для результатов
         results = []
         # Начинаем расчеты для каждого комплекта
         for count, (
@@ -56,12 +69,6 @@ class WBCalc():
             # Логистика
             package = self._pack_size(package)  
             logistics = self._logistics_wb(package)
-
-            # Тест
-            print(f'cost_row is: {cost_row}')
-            print(f'package is: {package}')
-            print(f'logistics is: {logistics}')
-            print(f'tab is {tab}')
 
             # Запаковываем
             calcdata = self.calcdata_strct(
@@ -109,6 +116,7 @@ class WBCalc():
 
         print(f'price is: {price}')
 
+        # Расчет
         for i in range(1, max_iterations):
 
             if tab == 'WBsole':
@@ -148,7 +156,7 @@ class WBCalc():
 
         :return: price
         """
-        print(f'we in _price_calc_sole method')
+        #print(f'we in _price_calc_sole method')
 
         # Комиссии, налоги, риски
         comissions = price * (float(calcdata.cperc) / 100)
@@ -169,7 +177,7 @@ class WBCalc():
         :param calcdata:  именованный кортеж со значениями полей
         :param price: рассчитанная в _price_calc_sole цена
         """
-        print(f'we in _profit_calc_sole method')
+        #print(f'we in _profit_calc_sole method')
 
         # Комиссии, налоги, риски
         comissions = price * (float(calcdata.cperc) / 100)

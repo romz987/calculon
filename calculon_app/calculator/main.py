@@ -1,6 +1,14 @@
+import logging
 from flask import request
 from calculon_app.calculator.wbcalc import WBCalc
 from calculon_app.calculator.ozcalc import OZCalc
+from colorama import init, Fore, Style
+
+
+# Уровень логирования
+logging.basicConfig(level=logging.INFO)
+# Инициализируем coloram-у
+init(autoreset=True)
 
 
 class Calculon(WBCalc, OZCalc):
@@ -14,10 +22,13 @@ class Calculon(WBCalc, OZCalc):
         """ 
         Первичная маршрутизация
         """
-        # Тест
-        # result = 'hello, it works!'
-        print(f'tab is:{tab}, subtab is:{subtab}')
-        print(f'formdata is: {formdata}')
+        # Log
+        logging.info(
+            f'{Fore.YELLOW}[main.py][entry_point] output:\n{Style.RESET_ALL}'
+            f'tab is: {tab}\nsubtab is: {subtab}\n'
+            f'formdata is: {formdata}\n'
+        )
+
         # Маршрутизация на переупаковку
         if subtab == 'Price':
             stuff = self.price_repack(formdata)
@@ -60,15 +71,18 @@ class Calculon(WBCalc, OZCalc):
                 request.form.get('tax'), 
                 request.form.get('risk'), 
                 request.form.get('cost_per_one'), 
-                request.form.get('shipment'),
-                request.form.get('fbsfbo_button')
+                request.form.getlist('shipment'),
+                request.form.getlist('fbsfbo_button')
             ]
 
-        # Проверяем созданный словарь 
+        # ЛОГ (Проверяем созданный словарь)
+        logging.info(
+            f'{Fore.YELLOW}[main.py][price_repack] ' 
+            f'output:{Style.RESET_ALL}'
+        )
         for count, values in stuff.items():
             print(count, ":", values)
         
-        # result = 'PRICE REPACK'
         return stuff
 
 
@@ -83,14 +97,20 @@ class Calculon(WBCalc, OZCalc):
 
     def routing(self, tab, subtab, stuff):
         """  
-        Роутинг на метод
+        Роутинг на метод расчета
 
         :param tab:
         :param subtab:
-        :param stuff:
+        :param stuff: 
 
-        :return: 
+        :return: результат расчета
         """
+        # Лог
+        logging.info(
+            f'{Fore.YELLOW}[main.py][routing] output:{Style.RESET_ALL}\n'
+            f'tab is: {tab}\nsubtab is: {subtab}'
+        )
+
         # Оборачиваем
         method = self.get_method(tab, subtab)
 
@@ -98,7 +118,10 @@ class Calculon(WBCalc, OZCalc):
         if method:
             result = method(stuff, tab)
         else:
-            print('Error in tab or subtab')
+            logging.info(
+                    f'{Fore.RED}[main.py][routing] ' 
+                    f'output: Error in tab or subtab{Style.RESET_ALL}'
+            )
             result = 'No such func'
 
         return result
