@@ -9,29 +9,6 @@ logging.basicConfig(level=logging.INFO)
 init(autoreset=True)
 
 
-# Cтруктура данных для запроса на расчет
-calcdata_strct = namedtuple('calcdata_strct', [
-    'cost_row',
-    'des_profit',
-    'logistics',
-    'cperc',
-    'risk',
-    'tax_percent',
-    'cost_box',
-    'wage'
-])
-
-# Структура данных для ответа
-answerdata_strct = namedtuple('answerdata_strct', [
-    'price',
-    'profit',
-    'des_profit',
-    'cost_row',
-    'comissions',
-    'logistics',
-    'tax',
-    'risk'
-])
 
 
 def wbprice_request(stuff, tab):
@@ -69,6 +46,7 @@ def wbprice_request(stuff, tab):
 
         # Запаковываем
         calcdata = calcdata_strct(
+            count = count,
             cost_row = cost_row,
             des_profit = des_profit,
             logistics = logistics,
@@ -80,11 +58,20 @@ def wbprice_request(stuff, tab):
         )
 
         # Отправляем на расчет
-        result = _wb_calculate(tab, calcdata)
+        price = _wb_calculate(tab, calcdata)
+        # Возвращаем структуру цены
+        result = _price_struct(tab, calcdata, price)
+        # Пихаем в список
         results.append(result)
 
     return results
 
+
+def wbprofit_request(stuff):
+
+    answer="WBSPROFIT_request"
+
+    return answer
 
 
 def _wb_calculate(tab, calcdata):
@@ -125,12 +112,12 @@ def _wb_calculate(tab, calcdata):
         # Сраниваем
         diff = abs(profit - des_profit)
 
+        # Возвращаем решение, только если оно найдено
         if diff <= tolerance:
             return round(price) 
     
     logging.info(f'{Fore.RED}Не удалось найти решение{Style.RESET_ALL}')
     return 0
-
 
 
 def _price_calc_sole(calcdata, price):
@@ -142,14 +129,15 @@ def _price_calc_sole(calcdata, price):
 
     :return: price
     """
-    #print(f'we in _price_calc_sole method')
-
     # Комиссии, налоги, риски
     comissions = price * (float(calcdata.cperc) / 100)
     tax = price * (float(calcdata.tax_percent) / 100)
     risk = price * (float(calcdata.risk) / 100)
     # Все расходы
-    all_costs = calcdata.cost_row + comissions + calcdata.logistics + float(calcdata.cost_box) + float(calcdata.wage) + risk + tax
+    all_costs = (
+            calcdata.cost_row + comissions + calcdata.logistics
+            + float(calcdata.cost_box) + float(calcdata.wage) + risk + tax
+        )
     # Цена
     price = all_costs + calcdata.des_profit
 
@@ -163,19 +151,19 @@ def _profit_calc_sole(calcdata, price):
     :param calcdata:  именованный кортеж со значениями полей
     :param price: рассчитанная в _price_calc_sole цена
     """
-    #print(f'we in _profit_calc_sole method')
-
     # Комиссии, налоги, риски
     comissions = price * (float(calcdata.cperc) / 100)
     tax = price * (float(calcdata.tax_percent) / 100)
     risk = price * (float(calcdata.risk) / 100)
     # Все расходы
-    all_costs = calcdata.cost_row + comissions + calcdata.logistics + float(calcdata.cost_box) + float(calcdata.wage) + risk + tax
+    all_costs = (
+            calcdata.cost_row + comissions + calcdata.logistics
+            + float(calcdata.cost_box) + float(calcdata.wage) + risk + tax
+        )
     # Профит
     profit = price - all_costs
 
     return profit
-
 
 
 def _price_calc_ltd(calcdata, price):
@@ -193,14 +181,16 @@ def _price_calc_ltd(calcdata, price):
     comissions = price * (float(calcdata.cperc) / 100)
     risk = price * (float(calcdata.risk) / 100)
     # Все расходы без рисков и налогов
-    all_costs = calcdata.cost_row + comissions + calcdata.logistics + float(calcdata.cost_box) + float(calcdata.wage)
+    all_costs = (
+                calcdata.cost_row + comissions + calcdata.logistics 
+                + float(calcdata.cost_box) + float(calcdata.wage)
+        )
     # Считаем налог
     tax = (price - all_costs) * (float(calcdata.tax_percent) / 100) 
     # Цена
     price = all_costs + tax + risk + calcdata.des_profit
 
     return price
-
 
 
 def _profit_calc_ltd(calcdata, price):
@@ -218,13 +208,60 @@ def _profit_calc_ltd(calcdata, price):
     comissions = price * (float(calcdata.cperc) / 100)
     risk = price * (float(calcdata.risk) / 100)
     # Все расходы без рисков и налогов
-    all_costs = calcdata.cost_row + comissions + calcdata.logistics + float(calcdata.cost_box) + float(calcdata.wage)
+    all_costs = (
+            calcdata.cost_row + comissions + calcdata.logistics 
+            + float(calcdata.cost_box) + float(calcdata.wage)
+                                               )
     # Считаем налог
     tax = (price - all_costs) * (float(calcdata.tax_percent) / 100) 
     # Цена
     profit = price - (all_costs + tax + risk)
 
     return price
+
+
+def _price_struct(tab, calcdata, price):
+    """  
+    Возвращаем структуру цены
+    """
+    print(tab)
+    if tab == 'WBsole':
+        comissions = round(price * (float(calcdata.cperc) / 100))
+        risk = round(price * (float(calcdata.risk) / 100))
+        tax = round(price * (float(calcdata.tax_percent) / 100))
+        all_costs = (
+                round(calcdata.cost_row + comissions + calcdata.logistics 
+                + float(calcdata.cost_box) + float(calcdata.wage) + risk + tax)
+            )
+        profit = round(price - all_costs)
+
+    elif tab == 'WBltd':
+        comissions = round(price * (float(calcdata.cperc) / 100))
+        risk = round(price * (float(calcdata.risk) / 100))
+        all_costs = (
+                round(calcdata.cost_row + comissions + calcdata.logistics 
+                + float(calcdata.cost_box) + float(calcdata.wage))
+            )
+        tax = round((price - all_costs) * (float(calcdata.tax_percent) / 100))
+        profit = round(price - (all_costs + tax + risk))
+
+    else:
+        logging.info(
+            f'{Fore.RED}[wbcalc][_price_struct]TabError{Style.RESET_ALL}'
+        )
+
+    answr_data = self.answerdata_strct(
+        count = calcdata.count,
+        price = price,
+        profit = profit,
+        cost_row = calcdata.cost_row,
+        comissions = comissions,
+        logistics = calcdata.logistics,
+        tax = tax,
+        risk = risk,
+    )
+
+    return answr_data
 
 
 def _pack_size(package):
@@ -267,14 +304,29 @@ def _logistics_wb(package):
     return result
 
 
-# Тест 
-stuff = {'1': ['8', '8', '20*25*17', '50', '21', '7', '3', '150', [], []]}
-tab = 'WBsole'
+# Cтруктура данных для запроса на расчет
+calcdata_strct = namedtuple('calcdata_strct', [
+    'count',
+    'cost_row',
+    'des_profit',
+    'logistics',
+    'cperc',
+    'risk',
+    'tax_percent',
+    'cost_box',
+    'wage'
+])
 
 
-var = wbprice_request(stuff, tab)
-
-print(var)
-print('buy')
-
+# Структура данных для ответа
+answerdata_strct = namedtuple('answerdata_strct', [
+    'count',
+    'price',
+    'profit',  
+    'cost_row',
+    'comissions',
+    'logistics',
+    'tax',
+    'risk'
+])
 
