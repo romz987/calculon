@@ -20,5 +20,6 @@ def calculate():
     
     # Тестим
     result = calc.entry_point(tab, subtab, request.form)
+    print(result)
    
     return render_template("index.html", result=result)
