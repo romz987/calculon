@@ -134,17 +134,12 @@ class WBCalc():
             # Сраниваем
             diff = abs(profit - des_profit)
 
+            # Возвращаем решение, только если оно найдено
             if diff <= tolerance:
-                break 
-
-            if i >= max_iterations:
-                print('Не удалось найти решение')
-                price = 0 
-                break
-
-        price = round(price)
-
-        return price
+                return round(price) 
+        
+        logging.info(f'{Fore.RED}Не удалось найти решение{Style.RESET_ALL}')
+        return 0
 
 
     def _price_calc_sole(self, calcdata, price):

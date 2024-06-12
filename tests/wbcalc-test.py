@@ -86,12 +86,6 @@ def wbprice_request(stuff, tab):
     return results
 
 
-def wbprofit_request(stuff):
-
-    answer="WBSPROFIT_request"
-
-    return answer
-
 
 def _wb_calculate(tab, calcdata):
     """ 
@@ -132,16 +126,11 @@ def _wb_calculate(tab, calcdata):
         diff = abs(profit - des_profit)
 
         if diff <= tolerance:
-            break 
+            return round(price) 
+    
+    logging.info(f'{Fore.RED}Не удалось найти решение{Style.RESET_ALL}')
+    return 0
 
-        if i >= max_iterations:
-            print('Не удалось найти решение')
-            price = 0 
-            break
-
-    price = round(price)
-
-    return price
 
 
 def _price_calc_sole(calcdata, price):
@@ -188,6 +177,7 @@ def _profit_calc_sole(calcdata, price):
     return profit
 
 
+
 def _price_calc_ltd(calcdata, price):
     """ 
     Считает цену для WB ООО
@@ -210,6 +200,7 @@ def _price_calc_ltd(calcdata, price):
     price = all_costs + tax + risk + calcdata.des_profit
 
     return price
+
 
 
 def _profit_calc_ltd(calcdata, price):
@@ -274,10 +265,6 @@ def _logistics_wb(package):
     result = 30 + factor + factor * ((package - 0.01) // 1)
 
     return result
-
-
-
-
 
 
 # Тест 

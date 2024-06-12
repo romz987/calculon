@@ -136,7 +136,7 @@ class OZCalc():
         # Ожидаемый профит
         des_profit = float(calcdata.des_profit)
         # Начальное приближение
-        init_price = (
+        price = (
             (calcdata.cost_row + calcdata.logistics + float(calcdata.shipment)
             + float(calcdata.wage) + float(calcdata.cost_box))
             * (1 + (float(calcdata.cperc) / 100))
@@ -147,7 +147,7 @@ class OZCalc():
         for i in range(1, max_iterations):
 
             if tab == 'OZsole':
-                price = self._price_calc_sole(calcdata, init_price)
+                price = self._price_calc_sole(calcdata, price)
                 profit = self._profit_calc_sole(calcdata, price)
 
             elif tab == 'OZltd':
@@ -163,16 +163,10 @@ class OZCalc():
             diff = abs(profit - des_profit)
 
             if diff <= tolerance:
-                break 
+                return round(price)
 
-            if i >= max_iterations:
-                print('Не удалось найти решение')
-                price = 0 
-                break
-
-        price = round(price)
-
-        return price
+        logging.info(f'{Fore.RED}Не удалось найти решение{Style.RESET_ALL}')
+        return 0
 
 
 

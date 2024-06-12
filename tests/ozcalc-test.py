@@ -122,7 +122,7 @@ def _oz_calculate(tab, calcdata):
     )
     # Условия
     tolerance = 0.1
-    max_iterations = 1000
+    max_iterations = 10
     # Ожидаемый профит
     des_profit = float(calcdata.des_profit)
     # Начальное приближение
@@ -146,24 +146,20 @@ def _oz_calculate(tab, calcdata):
 
         else:
             logging.info(
-                f'{Fore.RED}[ozcalc.py][oz_calculate] TabError')
-            break
+                f'{Fore.RED}[ozcalc.py][oz_calculate] TabError'
+            )
+            price = '[ozcalc][oz_calculate]TabError'
+            return price
+            
 
         # Сраниваем
         diff = abs(profit - des_profit)
 
         if diff <= tolerance:
-            break 
+            return price
 
-        if i >= max_iterations:
-            print('Не удалось найти решение')
-            price = 0 
-            break
-
-    price = round(price)
-
-    return price
-
+    logging.info(f'{Fore.RED}Не удалось найти решение')
+    return 0
 
 
 def _price_calc_sole(calcdata, price):
@@ -301,7 +297,7 @@ def _lastmile(price):
 
 
 # Тест 
-stuff = {'1': ['8', '8', '10*10*10', '50', '21', '7', '5', '100', ['30'], ['fbo']]}
+stuff = {'1': ['8', '8', '25*20*17', '50', '21', '7', '5', '150', ['30'], ['fbo']]}
 tab = 'OZsole'
 
 
