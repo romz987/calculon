@@ -88,7 +88,7 @@ class WBCalc:
 
         # Начальное приближение
         price = (
-            (calcdata.cost_row + calcdata.logistics
+            (calcdata.cost_row + calcdata.logistics + des_profit
             + float(calcdata.wage) + float(calcdata.cost_box))
             * (1 + (float(calcdata.cperc) / 100))
         )
@@ -218,7 +218,7 @@ class WBCalc:
         # Цена
         profit = price - (all_costs + tax + risk)
 
-        return price
+        return profit
 
 
     def _price_struct(self, tab, calcdata, price):
@@ -281,7 +281,6 @@ class WBCalc:
             result *= number
        
         result = result / 1000
-
 
         return result
 
