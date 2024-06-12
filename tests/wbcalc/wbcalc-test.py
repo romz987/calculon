@@ -87,7 +87,7 @@ def _wb_calculate(tab, calcdata):
 
     # Начальное приближение
     price = (
-        (calcdata.cost_row + calcdata.logistics
+        (calcdata.cost_row + calcdata.logistics + calcdata.des_profit
         + float(calcdata.wage) + float(calcdata.cost_box))
         * (1 + (float(calcdata.cperc) / 100))
     )
@@ -211,13 +211,13 @@ def _profit_calc_ltd(calcdata, price):
     all_costs = (
             calcdata.cost_row + comissions + calcdata.logistics 
             + float(calcdata.cost_box) + float(calcdata.wage)
-                                               )
+        )
     # Считаем налог
     tax = (price - all_costs) * (float(calcdata.tax_percent) / 100) 
     # Цена
     profit = price - (all_costs + tax + risk)
 
-    return price
+    return profit
 
 
 def _price_struct(tab, calcdata, price):
@@ -250,7 +250,7 @@ def _price_struct(tab, calcdata, price):
             f'{Fore.RED}[wbcalc][_price_struct]TabError{Style.RESET_ALL}'
         )
 
-    answr_data = self.answerdata_strct(
+    answr_data = answerdata_strct(
         count = calcdata.count,
         price = price,
         profit = profit,
@@ -330,3 +330,15 @@ answerdata_strct = namedtuple('answerdata_strct', [
     'risk'
 ])
 
+
+
+# Тест 
+stuff = {'1': ['8', '8', '25*20*17', '50', '21', '7', '5', '150', [], []]}
+tab = 'WBltd'
+
+
+
+var = wbprice_request(stuff, tab)
+
+print(var)
+print('buy')
