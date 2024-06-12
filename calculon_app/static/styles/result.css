@@ -1,0 +1,70 @@
+/**********Результат*********/
+div.output_field {
+	margin-top: 3%;
+}
+
+div.output_field h3 {
+	font-weight: bold;
+	margin-left: 3%;
+}
+
+#result {
+	border-radius: 10px;
+	margin-left: 3%;
+	margin-top: 2%;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	background-color: #E2EDF5;
+	box-shadow: 1px 1px 4px #9BA3A8;
+}
+
+#result_top {
+	display: flex;
+	gap: 10%;
+	padding: 10px;
+}
+
+#result_other {
+	display: flex;
+	gap: 3%;
+	padding: 10px;
+	font-weight: bold;
+	font-size: 1.6rem;
+}
+
+#result_other .sign {
+	font-size: 0.9rem;
+}
+
+#result_top .top {
+	border-radius: 10px;
+	padding: 14px;
+	background-color: yellow;
+	font-weight: bold;
+	font-size: 1.4rem;
+	color: white;
+	background-color: #090D0C;
+}
+
+#price {
+	font-size: 1rem;
+	font-weight: bold;
+}
+
+#profit {
+	font-size: 1rem;
+	font-weight: boldl;
+}
+
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+#result {
+    opacity: 0;
+    animation: fadeIn 1s ease-in forwards;
+    animation-delay: 0.3s;
+}

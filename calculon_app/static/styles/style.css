@@ -24,22 +24,6 @@ main {
 	margin-left: 20%;
 }
 
-footer {
-    width: 100%;
-    background: gray;
-    height: 5%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-}
-
-footer p {
-  margin-left: 20%;
-  padding-top: 12px;
-  font-weight: bold;
-  color: white;
-}
-
 nav {
   width: 100%;
 	font-family: 'Rubik', sans-serif;
