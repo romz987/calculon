@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/content.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/fields.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/buttons.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/result.css') }}">
+
   </head>
 
   <body>
@@ -394,24 +396,31 @@
 
           <div class="output_field">
             <h3>Результат</h3>
-              <div class="result">
-                {% if result %}
-                  {% for item in result %}
-                    <p>{{ item }}</p>
-                  {% endfor %}
-                {% endif %}
-              </div>
-              <button id="clearButton">Clear</button>
+                {% for item in result %}
+
+                <div id="result">
+                   <div id="result_top">
+                      <div class="top">{{ item.count }} шт</div>
+                      <div class="top"><span id="price">Цена: </span>{{ item.price }}</div>
+                      <div class="top"><span id="profit">Профит: </span>{{ item.profit }}</div>
+                   </div>
+                   <div id="result_other">
+                      <div><span class="sign">Себестоимость:</span> {{ item.cost_row }}</div>                           
+                      <div><span class="sign">Комиссии:</span> {{ item.comissions }}</div>
+                      <div><span class="sign">Логистика:</span> {{ item.logistics }}</div>
+                      <div><span class="sign">Налог:</span> {{ item.tax }}</div>
+                      <div><span class="sign">Риски:</span> {{ item.risk }}</div>
+                    </div>
+                </div>
+
+                {% endfor %}
+            <button id="clearButton">Clear</button>
           </div>
       </section>
 
     </div>
 
   </main>
-
-  <footer>
-    <p><i>So... It is crap definitely, but it works...<i></p>
-  </footer>
 
   <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
 
