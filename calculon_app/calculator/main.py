@@ -7,7 +7,32 @@ class Calculon(WBCalc, OZCalc):
 
 
     def __init__(self):
-        pass
+        self.row_cost = 0
+        self.box_cost = 0
+        self.wage_cost = 0
+        self.shipment = 0
+        self.comission_percent = 0
+        self.tax_percent = 0
+        self.risk_percent = 0
+        self.profit_percent = 0
+        self.package = 0
+        self.logistics = 0
+        self.lastmile = 0
+
+
+    def var_reset(self):
+        self.row_cost = 0
+        self.box_cost = 0
+        self.wage_cost = 0
+        self.shipment = 0
+        self.comission_percent = 0
+        self.tax_percent = 0
+        self.risk_percent = 0
+        self.profit_percent = 0
+        self.package = 0
+        self.logistics = 0
+        self.lastmile = 0
+
 
 
     def entry_point(self, tab, subtab, formdata):
@@ -32,6 +57,7 @@ class Calculon(WBCalc, OZCalc):
     def price_repack(self, tab, subtab, formdata):
         """ 
         Переупаковка для вкладки Price
+        **(переработать)
         """
         # Создаем словарь комплектов 
         stuff = {}
