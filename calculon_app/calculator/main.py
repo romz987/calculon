@@ -34,7 +34,6 @@ class Calculon(WBCalc, OZCalc):
         self.lastmile = 0
 
 
-
     def entry_point(self, tab, subtab, formdata):
         """ 
         Первичная маршрутизация
