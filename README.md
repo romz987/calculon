@@ -32,8 +32,8 @@
 
 ## Соглашения
 
-HTML: camelCase 
-JavaScript: camelCase
+HTML: camelCase  
+JavaScript: camelCase  
 Python: snake_case
 
 ## Переменные
