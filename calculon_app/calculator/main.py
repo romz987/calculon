@@ -15,7 +15,7 @@ class Calculon(WBCalc, OZCalc):
         self.tax_percent = 0
         self.risk_percent = 0
         self.profit_percent = 0
-        self.package = 0
+        self.package_size = 0
         self.logistics = 0
         self.lastmile = 0
 
@@ -29,7 +29,7 @@ class Calculon(WBCalc, OZCalc):
         self.tax_percent = 0
         self.risk_percent = 0
         self.profit_percent = 0
-        self.package = 0
+        self.package_size = 0
         self.logistics = 0
         self.lastmile = 0
 
