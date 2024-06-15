@@ -1,36 +1,44 @@
 from flask import request
 from calculon_app.calculator.wbcalc import WBCalc
 from calculon_app.calculator.ozcalc import OZCalc
+from calculon_app.calculator.logs import LogClass 
 
 
-class Calculon(WBCalc, OZCalc):
+class Calculon(WBCalc, OZCalc, LogClass):
 
 
     def __init__(self):
         self.row_cost = 0
         self.box_cost = 0
         self.wage_cost = 0
-        self.shipment = 0
+        # logistics
+        self.package_size = 0
+        self.logistics = 0
+        # percents
         self.comission_percent = 0
         self.tax_percent = 0
         self.risk_percent = 0
-        self.profit_percent = 0
-        self.package_size = 0
-        self.logistics = 0
+        self.profit_percent = 0                 
+        #ozon only
+        self.shipment = 0
         self.lastmile = 0
+
 
 
     def var_reset(self):
         self.row_cost = 0
         self.box_cost = 0
         self.wage_cost = 0
-        self.shipment = 0
+        # logistics
+        self.package_size = 0
+        self.logistics = 0
+        # percents
         self.comission_percent = 0
         self.tax_percent = 0
         self.risk_percent = 0
-        self.profit_percent = 0
-        self.package_size = 0
-        self.logistics = 0
+        self.profit_percent = 0                 
+        #ozon only
+        self.shipment = 0
         self.lastmile = 0
 
 
