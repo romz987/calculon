@@ -1,23 +1,16 @@
 class WBCalc():
 
 
-    def wbprice_request(self, stuff, tab):
+    def wbprice_request(self):
         """
         Считаем цену для Wildberries ИП
         """
         return answer
 
 
-    def wbsprofit_request(self, stuff):
+    def wbprofit_request(self):
 
         answer="WBSPROFIT_request"
-
-        return answer
-
-
-    def wblprofit_request(self, stuff):
-
-        answer="WBLPROFIT_request"
 
         return answer
 
@@ -28,7 +21,7 @@ class WBCalc():
 
         :param package: строка с размером упаковки
 
-        :return: объем в милилитрах
+        :return: объем в литрах
         """
 
         # Преобразуем каждую часть строки в целое число
@@ -37,13 +30,13 @@ class WBCalc():
         for number in numbers:
             result *= number
        
-        result = result / 1000
+        volume_lt = result / 1000
 
 
-        return result
+        return volume_lt
 
 
-    def __logistics_wb(self, package):
+    def __logistics_wb(self, volume_lt):
         """
         Считаем цену логистики в зависимости
         от объема упаковки
@@ -57,8 +50,8 @@ class WBCalc():
         else:
             factor = 6
 
-        result = 30 + factor + factor * ((package - 0.01) // 1)
+        logistics = 30 + factor + factor * ((package - 0.01) // 1)
 
-        return result
+        return logistics
 
 
