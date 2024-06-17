@@ -8,7 +8,7 @@ class Calculon(WBCalc, OZCalc, LogClass):
 
 
     def __init__(self):
-        self.row_cost = 0
+        self.cost_per_one = 0
         self.box_cost = 0
         self.wage_cost = 0
         # logistics
@@ -24,9 +24,8 @@ class Calculon(WBCalc, OZCalc, LogClass):
         self.lastmile = 0
 
 
-
     def var_reset(self):
-        self.row_cost = 0
+        self.cost_per_one = 0
         self.box_cost = 0
         self.wage_cost = 0
         # logistics
