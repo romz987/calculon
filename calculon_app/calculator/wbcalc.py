@@ -1,9 +1,30 @@
 class WBCalc():
 
 
-    def _pack_size(self, package):
+    def wbprice_request(self, stuff, tab):
         """
-        Считаем объем упаковки из строки
+        Считаем цену для Wildberries ИП
+        """
+        return answer
+
+
+    def wbsprofit_request(self, stuff):
+
+        answer="WBSPROFIT_request"
+
+        return answer
+
+
+    def wblprofit_request(self, stuff):
+
+        answer="WBLPROFIT_request"
+
+        return answer
+
+
+    def __pack_size(self, package):
+        """
+        Объем упаковки из строки вида "11*10*8"
 
         :param package: строка с размером упаковки
 
@@ -22,7 +43,7 @@ class WBCalc():
         return result
 
 
-    def _logistics_wb(self, package):
+    def __logistics_wb(self, package):
         """
         Считаем цену логистики в зависимости
         от объема упаковки
@@ -40,55 +61,4 @@ class WBCalc():
 
         return result
 
-
-    def wbprice_request(self, stuff, tab):
-        """
-        Считаем цену для Wildberries ИП
-        """
-        # Тест
-        print(f'I got it! Stuff is: {stuff}')
-        # Начинаем расчеты для каждого комплекта
-        for count, (
-            wage, 
-            cost_box, 
-            package, 
-            des_percent, 
-            cperc, 
-            cfix, 
-            tax_percent, 
-            risk,
-            cost_per_one
-        ) in stuff.items():
-
-            # Себестоимость
-            cost_row = int(count) * float(cost_per_one)
-            # Логистика
-            package = self._pack_size(package)  
-            logistics = self._logistics_wb(package)
-
-            # Тест
-            print(f'cost_row is: {cost_row}')
-            print(f'package is: {package}')
-            print(f'logistics is: {logistics}')
-            print(f'tab is {tab}')
-
-            # Отправляем на расчет
-            # Пакуем данные в список? (да)
-
-        answer="WBSPRICE_request"    
-        return answer
-
-
-    def wbsprofit_request(self, stuff):
-
-        answer="WBSPROFIT_request"
-
-        return answer
-
-
-    def wblprofit_request(self, stuff):
-
-        answer="WBLPROFIT_request"
-
-        return answer
 
