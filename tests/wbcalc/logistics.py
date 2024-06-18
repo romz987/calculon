@@ -1,66 +1,67 @@
-class WbCalcTest:
+import math
 
 
-    def pack_size(self, package):
+class WBCalcTest():
+
+
+    def __init__(self):
+            # Логистика
+            self.logistics_base_price = 30
+            self.logistics_factor_min = 5
+            self.logistics_factor_max = 6
+            self.territorial_distrib_coeff = 1 
+
+
+    def logistics_wb(self, volume_lt: float) -> float:
         """
-        Объем упаковки из строки вида "11*10*8"
-
-        :param package: строка с размером упаковки
-
-        :return: объем в литрах
-        """
-
-        # Преобразуем каждую часть строки в целое число
-        numbers = map(int, package.split('*'))          
-        result = 1
-        for number in numbers:
-            result *= number
-       
-        volume_lt = result / 1000
-
-
-        return volume_lt
-
-
-    def logistics_wb(self, volume_lt):
-        """
-        Считаем цену логистики в зависимости
-        от объема упаковки
+        Цена упаковки в зависимости от объема упаковки
+        в литрах.
 
         :param package: объем в литрах
-
         :return: цена
         """
-        if volume_lt < 5:
-            factor = 5
-        else:
-            factor = 6
+        if volume_lt <= 1:
+            logistics = self.logistics_base_price
 
-        logistics = 30 + factor + factor * ((volume_lt - 0.01) // 1)
+        elif volume_lt < 5:
+            logistics = (
+                (math.ceil(volume_lt - 1)) * self.logistics_factor_min + 
+                self.logistics_base_price
+            ) * self.territorial_distrib_coeff    
+
+        elif volume_lt >= 5:
+            logistics = (
+                (math.ceil(volume_lt - 1)) * self.logistics_factor_max + 
+                self.logistics_base_price
+            ) * self.territorial_distrib_coeff
 
         return logistics
 
 
-
-package_list = [
-    '0*0*0',
-    '1*0*0',
-    '1*0*1',
-    '1*1*1',
-    '1*2*1',
-    '8*8*8',
-    '10*10*10',
-    '11*10*9',
-    '100*5*4'
+volume_list = [
+    0,
+    0.01,
+    0.1,
+    0.99,
+    0.999,
+    1,
+    1.1,
+    1.99,
+    2,
+    2.1,
+    5,
+    5.1,
+    5.99,
+    6,
+    6.99,
+    7
 ]
 
-log = WbCalcTest()
+log = WBCalcTest()
 
-for i in package_list:
-    volume_lt = log.pack_size(i)
-    print(f'volume in lt is: {volume_lt}')
-
+for volume_lt in volume_list:
+    print(f'Объем: {volume_lt}')
     logistics = log.logistics_wb(volume_lt)
-    print(f'logistics price is: {logistics}\n\n')
+    print(f'Логистика: {logistics}\n')
 
 
