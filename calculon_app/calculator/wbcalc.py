@@ -9,20 +9,6 @@ class WBCalc():
         self.territorial_distrib_coeff = 1 
 
 
-    def wbprice_request(self):
-        """
-        Считаем цену для Wildberries ИП
-        """
-        return answer
-
-
-    def wbprofit_request(self):
-
-        answer="WBSPROFIT_request"
-
-        return answer
-
-
     def __logistics_wb(self, volume_lt: float) -> float:
         """
         Цена упаковки в зависимости от объема упаковки
@@ -49,4 +35,14 @@ class WBCalc():
             ) * self.territorial_distrib_coeff
 
         return logistics
+
+
+    def wbprice_request(self):
+        """
+        Считаем цену для Wildberries ИП
+        """
+        return answer
+
+
+
 
