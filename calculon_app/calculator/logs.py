@@ -14,10 +14,10 @@ class LogClass:
         pass
 
 
-    def info_message(self, mesg):
+    def info_message(self, filename: str, method_name: str, message: str) -> None:
         """
         Log info message 
         """
         logging.info(
-            f'{Fore.YELLOW}[info]{mesg}{Style.RESET_ALL}'
+            f'{Fore.YELLOW}[info][{filename}][{message}]{message}{Style.RESET_ALL}'
         )
