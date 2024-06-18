@@ -41,6 +41,28 @@ class Calculon(WBCalc, OZCalc, LogClass):
         self.lastmile = 0
 
 
+    def __pack_volume_lt(self, package_size: str) -> float:
+        """
+        Объем упаковки из строки вида "11*10*8"
+
+        :param package_size: размер упаковки в см
+        :return: объем в литрах
+        """
+        self.info_mesg('main.py','__pack_volume_lt', 'OK')
+        # Преобразуем каждую часть строки в целое число
+        numbers = map(int, package_size.split('*'))          
+        result = 1
+        for number in numbers:
+            result *= number
+       
+        volume_lt = result / 1000
+
+        return volume_lt
+
+
+
+
+
     def entry_point(self, tab, subtab, formdata):
         """ 
         Первичная маршрутизация
