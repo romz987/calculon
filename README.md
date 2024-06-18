@@ -38,3 +38,6 @@ Python: snake_case
 
 ## Переменные
 
+### Для Wildberries
+
+### Для Ozon
