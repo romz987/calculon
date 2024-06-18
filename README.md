@@ -5,7 +5,9 @@
 * [Структура проекта](#Структура-проекта)
 * [Соглашения](#Соглашения)
 * [Переменные](#Переменные)
+* [Классы](#Классы)
 
+---
 ## Структура проекта:
 
 ```
@@ -24,20 +26,26 @@
     ├──routes.py
     ├──calculon/
          ├──__init__.py
+         ├──logs.py
          ├──main.py
          ├──wbcalc.py 
          ├──ozcalc.py
  ├──README.md
 ```
 
+---
 ## Соглашения
 
 HTML: camelCase  
 JavaScript: camelCase  
 Python: snake_case
 
+---
 ## Переменные
 
 ### Для Wildberries
 
 ### Для Ozon
+
+---
+## Классы
