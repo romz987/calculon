@@ -1,6 +1,14 @@
 class WBCalc():
 
 
+    def __init__(self):
+        # Логистика
+        self.logistics_base_price = 30
+        self.logistics_factor_min = 5
+        self.logistics_factor_max = 6
+        self.territorial_distrib_coeff = 1 
+
+
     def wbprice_request(self):
         """
         Считаем цену для Wildberries ИП
@@ -15,43 +23,30 @@ class WBCalc():
         return answer
 
 
-    def __pack_size(self, package):
+    def __logistics_wb(self, volume_lt: float) -> float:
         """
-        Объем упаковки из строки вида "11*10*8"
-
-        :param package: строка с размером упаковки
-
-        :return: объем в литрах
-        """
-
-        # Преобразуем каждую часть строки в целое число
-        numbers = map(int, package.split('*'))          
-        result = 1
-        for number in numbers:
-            result *= number
-       
-        volume_lt = result / 1000
-
-
-        return volume_lt
-
-
-    def __logistics_wb(self, volume_lt):
-        """
-        Считаем цену логистики в зависимости
-        от объема упаковки
+        Цена упаковки в зависимости от объема упаковки
+        в литрах.
 
         :param package: объем в литрах
-
         :return: цена
         """
-        if package < 5:
-            factor = 5
-        else:
-            factor = 6
+        self.info_mesg('wbcalc.py','__logistics_wb','OK')
 
-        logistics = 30 + factor + factor * ((package - 0.01) // 1)
+        if volume_lt <= 1:
+            logistics = self.logistics_base_price
+
+        elif volume_lt < 5:
+            logistics = (
+                (math.ceil(volume_lt - 1)) * self.logistics_factor_min + 
+                self.logistics_base_price
+            ) * self.territorial_distrib_coeff    
+
+        elif volume_lt >= 5:
+            logistics = (
+                (math.ceil(volume_lt - 1)) * self.logistics_factor_max + 
+                self.logistics_base_price
+            ) * self.territorial_distrib_coeff
 
         return logistics
-
 
