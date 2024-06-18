@@ -17,7 +17,7 @@ class WBCalc():
         :param package: объем в литрах
         :return: цена
         """
-        self.info_mesg('wbcalc.py','__logistics_wb','OK')
+        self.info_message('wbcalc.py','__logistics_wb','OK')
 
         if volume_lt <= 1:
             logistics = self.logistics_base_price
@@ -33,6 +33,13 @@ class WBCalc():
                 (math.ceil(volume_lt - 1)) * self.logistics_factor_max + 
                 self.logistics_base_price
             ) * self.territorial_distrib_coeff
+
+        else:
+            self.error_message(
+                'wbcalc.py', 
+                '__logistics_wb', 
+                'incorrect volume_lt value'
+            )
 
         return logistics
 
