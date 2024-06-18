@@ -12,7 +12,7 @@ class Calculon(WBCalc, OZCalc, LogClass):
         self.box_cost = 0
         self.wage_cost = 0
         # logistics
-        self.package_size = 0
+        self.package_volume_lt = 0
         self.logistics = 0
         # percents
         self.comission_percent = 0
@@ -29,7 +29,7 @@ class Calculon(WBCalc, OZCalc, LogClass):
         self.box_cost = 0
         self.wage_cost = 0
         # logistics
-        self.package_size = 0
+        self.package_volume_lt = 0
         self.logistics = 0
         # percents
         self.comission_percent = 0
@@ -81,68 +81,6 @@ class Calculon(WBCalc, OZCalc, LogClass):
         
         return result
  
-
-    def price_repack(self, tab, subtab, formdata):
-        """ 
-        Переупаковка для вкладки Price
-        **(переработать)
-        """
-        # Создаем словарь комплектов 
-        stuff = {}
-
-        # Комплекты
-        count = request.form.getlist('count')
-        print(count)
-        wage = request.form.getlist('wage')
-        print(wage)
-        cost_box = request.form.getlist('cost_box')
-        print(cost_box)
-        box_size = request.form.getlist('box_size')
-        print(box_size)
-
-        # Остальное
-        des_percent = request.form.get('des_percent')    
-        print(f'des_percent is: {des_percent}')
-
-        cperc = request.form.get('cperc')
-        print(f'cperc is: {cperc}')
-
-        cfix = request.form.get('cfix')
-        print(f'cfix is: {cfix}')
-       
-        tax_percent = request.form.get('tax')
-        print(f'tax is: {tax_percent}')
-       
-        risk = request.form.get('risk')
-        print(f'risk is: {risk}')
-
-        cost_per_one = request.form.get('cost_per_one')
-        print(f'cost_per_one is: {cost_per_one}')
-
-
-        # Создаем словарь
-        for count, wage, cost, size, in zip(count, wage, cost_box, box_size):
-            stuff[count] = [wage, cost, size, des_percent, cperc, cfix, tax_percent, risk, cost_per_one]
-
-        # Проверяем созданный словарь 
-        for count, values in stuff.items():
-            print(count, ":", values)
-
-        # Отдаем словарь на расчеты 
-        result = self.routing(tab, subtab, stuff) 
-        
-        # result = 'PRICE REPACK'
-        return result
-
-
-    def profit_repack(self, tab, subtab, formdata):
-        """ 
-        Переупаковка для вкладки Profit
-        """
-        result = 'profit_repack'
-
-        return result 
-
 
     def routing(self, tab, subtab, stuff):
         """  
