@@ -22,6 +22,7 @@ class Calculon(WBCalc, OZCalc, LogClass):
         self.row_cost = 0
         self.wage_cost = 0
         self.box_cost = 0
+        self.package_size = 0
         self.package_volume_lt = 0
         self.logistics = 0
         # Ozon ONLY
@@ -43,6 +44,7 @@ class Calculon(WBCalc, OZCalc, LogClass):
         self.row_cost = 0
         self.wage_cost = 0
         self.box_cost = 0
+        self.package_size = 0
         self.package_volume_lt = 0
         self.logistics = 0
         
@@ -52,6 +54,7 @@ class Calculon(WBCalc, OZCalc, LogClass):
         self.row_cost = 0
         self.wage_cost = 0
         self.box_cost = 0
+        self.package_size = 0
         self.package_volume_lt = 0
         self.logistics = 0
   
