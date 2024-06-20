@@ -4,6 +4,13 @@ import math
 class OZCalc():
 
 
+    def __init__(self):
+        # Логистика
+        self.logistics_base_price = 76
+        self.logistics_factor = 9
+        self.territorial_distrib_coeff = 1 
+
+
     def __logistics_oz(self, volume_lt: float) -> float:
         """
         ТЕСТ расчета цены логистики от объема упаковки
