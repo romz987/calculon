@@ -4,42 +4,27 @@ import math
 class OZCalc():
 
 
-    def _pack_size(self, package):
+    def __logistics_wb(self, volume_lt: float) -> float:
         """
-        Считаем объем упаковки из строки
-
-        :param package: строка с размером упаковки
-
-        :return: объем в милилитрах
-        """
-
-        # Преобразуем каждую часть строки в целое число
-        numbers = map(int, package.split('*'))          
-        result = 1
-        for number in numbers:
-            result *= number
-       
-        result = result / 1000
-
-        return result
-
-
-    def _logistics_oz(self, package):
-        """
-        Считаем цену логистики в зависимости
-        от объема упаковки
+        ТЕСТ расчета цены логистики от объема упаковки
+        OZON
 
         :param package: объем в литрах
-
         :return: цена
         """
-        if package < 5:
-            result = 76
-        elif package > 5:
-            factor = 9
-            result = 76 + (math.ceil(package - 5) * 9)
+        if volume_lt <= 5:
+            logistics = self.logistics_base_price
+ 
+        elif volume_lt > 5:
+            logistics = (
+                (math.ceil(volume_lt - 5)) * self.logistics_factor + 
+                self.logistics_base_price
+            ) * self.territorial_distrib_coeff
 
-        return result
+        else: 
+            print('value error')
+
+        return logistics
 
 
     def _lastmile(price):
