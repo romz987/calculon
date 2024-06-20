@@ -8,38 +8,53 @@ class Calculon(WBCalc, OZCalc, LogClass):
 
 
     def __init__(self):
-        self.cost_per_one = 0
-        self.box_cost = 0
-        self.wage_cost = 0
-        # logistics
-        self.package_volume_lt = 0
-        self.logistics = 0
-        # percents
+        # STATIC
         self.comission_percent = 0
         self.tax_percent = 0
         self.risk_percent = 0
-        self.profit_percent = 0                 
-        #ozon only
+        self.profit_percent = 0    
+        self.cost_per_one = 0
+        self.profit_percent = 0
+        # Ozon ONLY 
         self.shipment = 0
+        self.lastmile = 0
+        # DYNAMIC
+        self.row_cost = 0
+        self.wage_cost = 0
+        self.box_cost = 0
+        self.package_volume_lt = 0
+        self.logistics = 0
+        # Ozon ONLY
         self.lastmile = 0
 
 
-    def var_reset(self):
-        self.cost_per_one = 0
-        self.box_cost = 0
-        self.wage_cost = 0
-        # logistics
-        self.package_volume_lt = 0
-        self.logistics = 0
-        # percents
+    def var_reset_all(self):
+        # STATIC
         self.comission_percent = 0
         self.tax_percent = 0
         self.risk_percent = 0
-        self.profit_percent = 0                 
-        #ozon only
+        self.profit_percent = 0    
+        self.cost_per_one = 0
+        self.profit_percent = 0
+        # Ozon ONLY 
         self.shipment = 0
         self.lastmile = 0
+        # DYNAMIC
+        self.row_cost = 0
+        self.wage_cost = 0
+        self.box_cost = 0
+        self.package_volume_lt = 0
+        self.logistics = 0
+        
 
+    def var_reset_dynamic(self):
+        # DYNAMIC
+        self.row_cost = 0
+        self.wage_cost = 0
+        self.box_cost = 0
+        self.package_volume_lt = 0
+        self.logistics = 0
+  
 
     def __pack_volume_lt(self, package_size: str) -> float:
         """
