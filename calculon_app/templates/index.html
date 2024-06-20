@@ -5,23 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculon</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/reset.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/main_style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/menu.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/main_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/buttons.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/fields.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/adapt.css') }}">
   </head>
 
   <body>
 
   <header>
       <h1>Calculon_</h1>
-      <nav class="menu">
-        <ul>
-          <li><a class="menu" href="/">Калькулятор</a></li>
-          <li><a class="menu">Инструкции</a></li>
-          <li><a class="menu">Формулы</a></li>
-        </ul>
-      </nav>
   </header>
 
   <main>
@@ -30,18 +23,18 @@
       <section class="left">
 
         <div class="tab">
-            <button class="tablinks" onclick="openTab(event, 'WBsole')">Wildberries ИП</button>
+            <button id="wbSoleButton" class="tablinks" onclick="openTab(event, 'WBsole')">Wildberries ИП</button>
             <div class="button_inner_space"></div>
-            <button class="tablinks" onclick="openTab(event, 'WBltd')">Wildberries ООО</button>
+            <button id="wbLtdButton" class="tablinks" onclick="openTab(event, 'WBltd')">Wildberries ООО</button>
             <div class="button_inner_space"></div>
-            <button class="tablinks" onclick="openTab(event, 'OZsole')">OZON ИП</button>
+            <button id="ozSoleButton" class="tablinks" onclick="openTab(event, 'OZsole')">OZON ИП</button>
             <div class="button_inner_space"></div>
-            <button class="tablinks" onclick="openTab(event, 'OZltd')">OZON ООО</button>
+            <button id="ozLtdButton" class="tablinks" onclick="openTab(event, 'OZltd')">OZON ООО</button>
         </div>
 
         <div id="WBsole" class="tabcontent">
 
-            <h3>Калькулятор для Wildberries ИП</h3>
+            <div class="mainHeaders"><h3>Калькулятор для Wildberries ИП</h3></div>
 
             <div class="subtab">
               <button class="subtablinks" onclick="openSubTab(event, 'WBsolePrice')">Цена</button>
@@ -51,235 +44,70 @@
 
             <div id="WBsolePrice" class="subtabcontent">
 
-              <h3>Расчет цены</h3>
-              <form id="priceForm-WBsolePrice" action="{{ url_for('calculate', tab='WBsole', subtab='Price') }}" method="post">
+              <div class="mainHeaders"><h3>Расчет цены</h3></div>
+              <form id="formWBsolePrice" action="{{ url_for('calculate', tab='WBsole', subtab='Price') }}" method="post">
 
-                <div class="flex_fields">                 
-                  <div class="input_fields">
-                    <h4>Проценты Wildberries</h4>
-                    <input id="cperc" type="text" name="cperc" value="21" oninput="checkFormFields('WBsolePrice')"> %
-                  </div>
+                <div id="flexJustifyFields">
+                    <div id="flexWrapperAllFields">
+                                
+                        <div class="flexWrapField"></div>
+                        <div class="flexWrapField"></div>
+                        <div class="flexWrapField"></div>
+                        <div class="flexWrapField"></div>
+                        <div class="flexWrapField"></div>
+                        <div class="flexWrapField"></div>
+                        <div class="flexWrapField"></div>
+                        <div class="flexWrapField"></div>
 
-                  <div class="input_fields_right">
-                    <h4>Логистика Wildberries</h4>
-                    <input id="cfix" type="text" name="cfix" value="30" oninput="checkFormFields('WBsolePrice')"> RUB
-                  </div>
-
-                  <div class="input_fields">
-                    <h4>Налог для ИП в процентах</h4>
-                    <input id="tax"  type="text" name="tax" value="7" oninput="checkFormFields('WBsolePrice')"> %
-                  </div>
-
-                  <div class="input_fields_right">
-                    <h4>Риски в процентах</h4>
-                    <input id="risk" type="text" name="risk" value="5" oninput="checkFormFields('WBsolePrice')"> %
-                  </div>
-
-                  <div class="input_fields">
-                    <h4>Себестоимость единицы</h4>
-                    <input id="cost_per_one" type="text" name="cost_per_one" oninput="checkFormFields('WBsolePrice')"> RUB
-                  </div>
-
-                  <div class="input_fields_right">
-                    <h4>Профит</h4>
-                    <input id="des_percent" type="text" name="des_percent" oninput="checkFormFields('WBsolePrice')"> %
-                  </div>
+                    </div>
                 </div>
 
-                <h3 id="complectHeader">Комплекты</h3>
-                <div id="dictionary-container-WBsolePrice">
-                  <div class="dictionary">
-                    <label for="count">Единиц:</label>
-                    <input id="count" type="text" name="count" value="1" oninput="checkFormFields('WBsolePrice')">
-                    <label for="wage">Стоимость труда:</label>
-                    <input id="wage" type="text" name="wage" value="8" oninput="checkFormFields('WBsolePrice')">
-                    <label for="cost_box">Стоимость упаковки:</label>
-                    <input id="cost_box" type="text" name="cost_box" value="8" oninput="checkFormFields('WBsolePrice')">
-                    <label for="box_size">Размеры упаковки:</label>
-                    <input id="box_size" type="text" name="box_size" value="10*10*10" oninput="checkFormFields('WBsolePrice')">
-                  </div>
+                <div id="flexWrapperAllComplects">
+                  <div class="mainHeaders"><h3 id="complectHeader">Комплекты</h3></div>
+                        <div id="flexWrapperCompectField">
+                            <div class="complectElement">
+                              <label for="count">Единиц:</label>
+                              <input id="" type="text" name="count" oninput="checkFormFields('WBsolePrice')">
+                            </div>
+
+                            <div class="complectElement">
+                              <label for="wageCost">Стоимость труда:</label>
+                              <input id="" type="text" name="wageCost" oninput="checkFormFields('WBsolePrice')">
+                            </div>
+
+                            <div class="complectElement">
+                              <label for="boxCost">Стоимость упаковки:</label>
+                              <input id="" type="text" name="boxCost" oninput="checkFormFields('WBsolePrice')">
+                            </div>
+
+                            <div class="complectElement">
+                              <label for="packageSize">Размеры упаковки:</label>
+                              <input id="" type="text" name="packageSize" oninput="checkFormFields('WBsolePrice')">
+                            </div>
+                        </div>
                 </div>
+
                 <button id="addDictButton" type="button" onclick="addDictionaryElement('WBsolePrice')">&#10133;</button><br>
                 <input id="submitButton" type="submit" value="Расcчитать" disabled>
               </form>
             </div> 
 
             <div id="WBsoleProfit" class="subtabcontent">
-              <h4>Расчет профита</h4>
+              <<div class="mainHeaders"><h3>Расчет профита</h3></div>
               <form id="profitForm-WBsoleProfit" action="{{ url_for('calculate', tab='WBsole', subtab='Profit') }}" method="post">
 
-                <div class="flex_fields">
-                    <div class="input_fields">
-                      <h4>Проценты Wildberries</h4>
-                      <input id="cperc" type="text" name="cperc" value="21" oninput="checkFormFields('WBsoleProfit')"> %
-                    </div>
-                    <div class="input_fields_right">
-                      <h4>Логистика Wildberries</h4>
-                      <input id="cfix" type="text" name="cfix" value="30" oninput="checkFormFields('WBsoleProfit')"> RUB
-                    </div>
-                    <div class="input_fields">
-                      <h4>Налог для ИП в процентах</h4>
-                      <input id="tax" type="text" name="tax" value="7" oninput="checkFormFields('WBsoleProfit')"> %
-                    </div>
-                    <div class="input_fields_right">
-                      <h4>Риски для ИП в процентах</h4>
-                      <input id="risk" type="text" name="risk" value="5" oninput="checkFormFields('WBsoleProfit')"> %
-                    </div>
-                    <div class="input_fields">
-                      <h4>Стоимость труда</h4>
-                      <input id="wageProfit" type="text" name="wage" oninput="checkFormFields('WBsoleProfit')"> RUB
-                    </div>
-                    <div class="input_fields_right">
-                      <h4>Стоимость упаковки</h4>
-                      <input id="cost_boxProfit" type="text" name="cost_box" oninput="checkFormFields('WBsoleProfit')"> RUB
-                    </div>
-                    <div class="input_fields">
-                      <h4>Размер упаковки</h4>
-                      <input id="box_sizeProfit" type="text" name="box_size" oninput="checkFormFields('WBsoleProfit')"><i>ex: 8*8*8</i>
-                    </div>
-                    <div class="input_fields_right">
-                      <h4>Себестоимость единицы</h4>
-                      <input id="cost_per_one" type="text" name="cost_per_one" oninput="checkFormFields('WBsoleProfit')"> RUB
-                    </div>
-                    <div class="input_fields">
-                      <h4>Цена</h4>
-                      <input id="priceProfit" type="text" name="price" oninput="checkFormFields('WBsoleProfit')"> RUB
-                    </div>
-                    <div class="input_fields_right">
-                      <h4>Количество</h4>
-                      <input id="countProfit" type="text" name="count" oninput="checkFormFields('WBsoleProfit')">
-                    </div>
-                    <input id="submitButton" type="submit" value="Рассчитать">
-                </div>
+
               </form>
             </div>
         </div>
 
-
-        <div id="WBltd" class="tabcontent">
-
-            <h3>Калькулятор для Wildberries ООО</h3>
-
-            <div class="subtab">
-              <button class="subtablinks" onclick="openSubTab(event, 'WBltdPrice')">Цена</button>
-              <div class="button_inner_space"></div>
-              <button class="subtablinks" onclick="openSubTab(event, 'WBltdProfit')">Профит</button>
-            </div>
-
-            <div id="WBltdPrice" class="subtabcontent">
-
-              <h4>Расчет цены</h4>
-              <form id="priceForm-WBltdPrice" action="{{ url_for('calculate', tab='WBltd', subtab='Price') }}" method="post">
-
-                <div class="flex_fields">                 
-                  <div class="input_fields">
-                    <h4>Проценты Wildberries</h4>
-                    <input id="cperc" type="text" name="cperc" value="21" oninput="checkFormFields('WBltdPrice')"> %
-                  </div>
-
-                  <div class="input_fields_right">
-                    <h4>Логистика Wildberries</h4>
-                    <input id="cfix" type="text" name="cfix" value="30" oninput="checkFormFields('WBltdPrice')"> RUB
-                  </div>
-
-                  <div class="input_fields">
-                    <h4>Налог для ИП в процентах</h4>
-                    <input id="tax"  type="text" name="tax" value="7" oninput="checkFormFields('WBltdPrice')"> %
-                  </div>
-
-                  <div class="input_fields_right">
-                    <h4>Риски в процентах</h4>
-                    <input id="risk" type="text" name="risk" value="5" oninput="checkFormFields('WBltdPrice')"> %
-                  </div>
-
-                  <div class="input_fields">
-                    <h4>Себестоимость единицы</h4>
-                    <input id="cost_per_one" type="text" name="cost_per_one" oninput="checkFormFields('WBltdPrice')"> RUB
-                  </div>
-
-                  <div class="input_fields_right">
-                    <h4>Профит</h4>
-                    <input id="des_percent" type="text" name="des_percent" oninput="checkFormFields('WBltdPrice')"> %
-                  </div>
-                </div>
-
-                <h4>Комплекты</h4>
-                <div id="dictionary-container-WBltdPrice">
-                  <div class="dictionary">
-                    <label for="count_per_one">Количество:</label>
-                    <input id="count" type="text" name="count" value="1" oninput="checkFormFields('WBltdPrice')">
-                    <label for="box_wage_cost">Стоимость труда:</label>
-                    <input id="wage" type="text" name="wage" oninput="checkFormFields('WBltdPrice')">
-                    <label for="box_cost">Стоимость упаковки:</label>
-                    <input id="cost_box" type="text" name="cost_box" oninput="checkFormFields('WBltdPrice')">
-                    <label for="box_size">Размеры упаковки:</label>
-                    <input id="box_size" type="text" name="box_size" value="10*10*10" oninput="checkFormFields('WBltdPrice')">
-                  </div>
-                </div>
-                <button id="addDictButton" type="button" onclick="addDictionaryElement('WBltdPrice')">&#10133; Добавить</button><br>
-                <input id="submitButton" type="submit" value="Расcчитать" disabled>
-              </form>
-            </div> 
-
-            <div id="WBltdProfit" class="subtabcontent">
-              <h4>Расчет профита</h4>
-              <form id="profitForm-WBltdProfit" action="{{ url_for('calculate', tab='WBltd', subtab='Profit') }}" method="post">
-
-                <div class="flex_fields">
-                    <div class="input_fields">
-                      <h4>Проценты Wildberries</h4>
-                      <input id="cperc" type="text" name="cperc" value="21" oninput="checkFormFields('WBltdProfit')"> %
-                    </div>
-                    <div class="input_fields_right">
-                      <h4>Логистика Wildberries</h4>
-                      <input id="cfix" type="text" name="cfix" value="30" oninput="checkFormFields('WBltdProfit')"> RUB
-                    </div>
-                    <div class="input_fields">
-                      <h4>Налог для ИП в процентах</h4>
-                      <input id="tax" type="text" name="tax" value="7" oninput="checkFormFields('WBltdProfit')"> %
-                    </div>
-                    <div class="input_fields_right">
-                      <h4>Риски для ИП в процентах</h4>
-                      <input id="risk" type="text" name="risk" value="5" oninput="checkFormFields('WBltdProfit')"> %
-                    </div>
-                    <div class="input_fields">
-                      <h4>Стоимость труда</h4>
-                      <input id="wageProfit" type="text" name="wage" oninput="checkFormFields('WBltdProfit')"> RUB
-                    </div>
-                    <div class="input_fields_right">
-                      <h4>Стоимость упаковки</h4>
-                      <input id="cost_boxProfit" type="text" name="cost_box" oninput="checkFormFields('WBltdProfit')"> RUB
-                    </div>
-                    <div class="input_fields">
-                      <h4>Размер упаковки</h4>
-                      <input id="box_sizeProfit" type="text" name="box_size" oninput="checkFormFields('WBltdProfit')"><i>ex: 8*8*8</i>
-                    </div>
-                    <div class="input_fields_right">
-                      <h4>Себестоимость единицы</h4>
-                      <input id="cost_per_one" type="text" name="cost_per_one" oninput="checkFormFields('WBltdProfit')"> RUB
-                    </div>
-                    <div class="input_fields">
-                      <h4>Цена</h4>
-                      <input id="priceProfit" type="text" name="price" oninput="checkFormFields('WBltdProfit')"> RUB
-                    </div>
-                    <div class="input_fields_right">
-                      <h4>Количество</h4>
-                      <input id="countProfit" type="text" name="count" oninput="checkFormFields('WBltdProfit')">
-                    </div>
-                    <input id="submitButton" type="submit" value="Рассчитать">
-                </div>
-              </form>
-            </div>
-          </div>  
-
-
       </section>
 
       <section class="right">
-          <div class="advert"><img src="{{ url_for('static', filename='assets/images/wbozonmain2.png') }}" alt=""></div>
+          <div class="advert"></div>
 
           <div class="output_field">
-            <h3>Результат</h3>
+            <div class="mainHeaders"><h3>Результат</h3></div>
               <div class="result">
                 {% if result %}
                   {% for item in result %}
@@ -287,7 +115,6 @@
                   {% endfor %}
                 {% endif %}
               </div>
-              <button id="clearButton">Clear</button>
           </div>
       </section>
 
