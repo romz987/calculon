@@ -4,7 +4,7 @@ import math
 class OZCalc():
 
 
-    def __logistics_wb(self, volume_lt: float) -> float:
+    def __logistics_oz(self, volume_lt: float) -> float:
         """
         ТЕСТ расчета цены логистики от объема упаковки
         OZON
