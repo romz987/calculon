@@ -1,5 +1,5 @@
 .venv/
 
-calculon_app/__pycache__
+calculon_app/calculator/__pycache__
 
 docker/images
