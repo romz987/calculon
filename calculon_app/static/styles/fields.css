@@ -1,0 +1,41 @@
+#flexWrapperAllFields {
+  width: 98%;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#flexJustifyFields {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.flexWrapField {
+  background-color: #DDD4FF;
+  box-shadow: 2px 2px 5px #adb5bd;
+  border-radius: 10px;
+  width: 240px;
+  height: 80px;
+}
+
+#flexWrapperAllComplects {
+
+}
+
+#flexWrapperCompectField {
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.complectElement {
+  margin: 10px;
+}
+
+.complectElement input {
+  width: 50px;
+}
