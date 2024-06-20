@@ -14,8 +14,8 @@ class WBCalcTest():
 
     def logistics_wb(self, volume_lt: float) -> float:
         """
-        Цена упаковки в зависимости от объема упаковки
-        в литрах.
+        ТЕСТ расчета цены логистики от объема упаковки
+        WILDBERRIES
 
         :param package: объем в литрах
         :return: цена
@@ -34,6 +34,9 @@ class WBCalcTest():
                 (math.ceil(volume_lt - 1)) * self.logistics_factor_max + 
                 self.logistics_base_price
             ) * self.territorial_distrib_coeff
+
+        else: 
+            print('value error')
 
         return logistics
 
