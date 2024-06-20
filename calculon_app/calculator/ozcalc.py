@@ -8,7 +8,8 @@ class OZCalc():
         # Логистика
         self.logistics_base_price = 76
         self.logistics_factor = 9
-        self.territorial_distrib_coeff = 1 
+        self.territorial_distrib_coeff = 1
+        self.lastmile_factor = 0.055
 
 
     def __logistics_oz(self, volume_lt: float) -> float:
@@ -34,23 +35,19 @@ class OZCalc():
         return logistics
 
 
-    def _lastmile(price):
+    def __lastmile(self, price):
         """ 
         Считем последнюю милю
         5.5% от цены, но не больше 500 руб
 
         :param price: 
         """
-        result = price * 0.055
+        lastmile_price = price * self.lastmile_factor
 
-        if result < 500:
-            pass
-        elif result > 500:
-            result = 500 
-        else:
-            print('lastmile value error')
-
-        return result
+        if lastmile_price >= 500:
+            lastmile_price = 500 
+                    
+        return lastmile_price
 
     
     def ozprice_request(self, stuff):
