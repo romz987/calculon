@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
+
+html {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+header {
+	background: #433673;	
+}
+
+header h1 {
+	width: 1000px;
+	margin: 0 auto;
+	padding: 45px 0 40px 0;
+	color: white;
+	font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+	font-size: 1.8rem;
+	font-weight: bold;	
+}
+
+.mainHeaders {
+	text-align: center;
+	padding: 15px;
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+}
+
+.mainHeaders h3 {
+	width: 100%;
+	background-color: #EAF7FF;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.flexmain {
+	display: flex;
+}
+
+section.left {
+	width: 50%;
+}
+
+section.right {
+	width: 50%;
+}

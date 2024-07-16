@@ -3,12 +3,15 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--Styles-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/styles/reset.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/styles/main.css') }}">
+
+    <!--Blocks-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/blocks/tabs/tabs.css') }}">
+
     <title>Calculon</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/reset.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/main_styles.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/buttons.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/fields.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/adapt.css') }}">
   </head>
 
   <body>
@@ -19,106 +22,25 @@
 
   <main>
 
-    <div class="flexmain">
-      <section class="left">
-
-        <div class="tab">
-            <button id="wbSoleButton" class="tablinks" onclick="openTab(event, 'WBsole')">Wildberries ИП</button>
-            <div class="button_inner_space"></div>
-            <button id="wbLtdButton" class="tablinks" onclick="openTab(event, 'WBltd')">Wildberries ООО</button>
-            <div class="button_inner_space"></div>
-            <button id="ozSoleButton" class="tablinks" onclick="openTab(event, 'OZsole')">OZON ИП</button>
-            <div class="button_inner_space"></div>
-            <button id="ozLtdButton" class="tablinks" onclick="openTab(event, 'OZltd')">OZON ООО</button>
-        </div>
-
-        <div id="WBsole" class="tabcontent">
-
-            <div class="mainHeaders"><h3>Калькулятор для Wildberries ИП</h3></div>
-
-            <div class="subtab">
-              <button class="subtablinks" onclick="openSubTab(event, 'WBsolePrice')">Цена</button>
-              <div class="button_inner_space"></div>
-              <button class="subtablinks" onclick="openSubTab(event, 'WBsoleProfit')">Профит</button>
-            </div>
-
-            <div id="WBsolePrice" class="subtabcontent">
-
-              <div class="mainHeaders"><h3>Расчет цены</h3></div>
-              <form id="formWBsolePrice" action="{{ url_for('calculate', tab='WBsole', subtab='Price') }}" method="post">
-
-                <div id="flexJustifyFields">
-                    <div id="flexWrapperAllFields">
-                                
-                        <div class="flexWrapField"></div>
-                        <div class="flexWrapField"></div>
-                        <div class="flexWrapField"></div>
-                        <div class="flexWrapField"></div>
-                        <div class="flexWrapField"></div>
-                        <div class="flexWrapField"></div>
-                        <div class="flexWrapField"></div>
-                        <div class="flexWrapField"></div>
-
-                    </div>
-                </div>
-
-                <div id="flexWrapperAllComplects">
-                  <div class="mainHeaders"><h3 id="complectHeader">Комплекты</h3></div>
-                        <div id="flexWrapperCompectField">
-                            <div class="complectElement">
-                              <label for="count">Единиц:</label>
-                              <input id="" type="text" name="count" oninput="checkFormFields('WBsolePrice')">
-                            </div>
-
-                            <div class="complectElement">
-                              <label for="wageCost">Стоимость труда:</label>
-                              <input id="" type="text" name="wageCost" oninput="checkFormFields('WBsolePrice')">
-                            </div>
-
-                            <div class="complectElement">
-                              <label for="boxCost">Стоимость упаковки:</label>
-                              <input id="" type="text" name="boxCost" oninput="checkFormFields('WBsolePrice')">
-                            </div>
-
-                            <div class="complectElement">
-                              <label for="packageSize">Размеры упаковки:</label>
-                              <input id="" type="text" name="packageSize" oninput="checkFormFields('WBsolePrice')">
-                            </div>
-                        </div>
-                </div>
-
-                <button id="addDictButton" type="button" onclick="addDictionaryElement('WBsolePrice')">&#10133;</button><br>
-                <input id="submitButton" type="submit" value="Расcчитать" disabled>
-              </form>
-            </div> 
-
-            <div id="WBsoleProfit" class="subtabcontent">
-              <<div class="mainHeaders"><h3>Расчет профита</h3></div>
-              <form id="profitForm-WBsoleProfit" action="{{ url_for('calculate', tab='WBsole', subtab='Profit') }}" method="post">
-
-
-              </form>
-            </div>
-        </div>
-
+      <section class="main-tabs">
+          <button id="wbsole" class="main-buttons__button">Wildberries ИП</button>
+          <div class="main-buttons__inner-space"></div>
+          <button id="wbltd" class="main-buttons__button">Wildberries ООО</button>
+          <div class="main-buttons__inner-space"></div>
+          <button id="ozsole" class="main-buttons__button">OZON ИП</button>
+          <div class="main-buttons__inner_space"></div>
+          <button id="ozltd" class="main-buttons__button">OZON ООО</button>
       </section>
 
-      <section class="right">
-          <div class="advert"></div>
+      <div class="main__flexwrapper">
+          <section id="section-left" class="main__section">
+              <p>Left Section</p>
+          </section>
 
-          <div class="output_field">
-            <div class="mainHeaders"><h3>Результат</h3></div>
-              <div class="result">
-                {% if result %}
-                  {% for item in result %}
-                    <p>{{ item }}</p>
-                  {% endfor %}
-                {% endif %}
-              </div>
-          </div>
-      </section>
-
-    </div>
+          <section id="section-right" class="main__section">
+              <p>Right Section</p>
+          </section>
+      </div>
 
   </main>
 
