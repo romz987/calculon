@@ -13,18 +13,18 @@
 ```
 ├──docker/
 ├──calculon_app/
-    ├──assets/
     ├──static/
-         ├──styles/
-              ├──reset.css 
-              ├──style.css
+         ├──assets/
+              ├──images/
+              ├──blocks/
+              ├──blocks/
          ├──scripts/
               ├──scripts.js
     ├──templates/
-              ├──index.html
+         ├──index.html
     ├──__init__.py
     ├──routes.py
-    ├──calculon/
+    ├──calculator/
          ├──__init__.py
          ├──logs.py
          ├──main.py
@@ -36,7 +36,7 @@
 ---
 ## Соглашения
 
-HTML: camelCase  
+HTML: БЭМ
 JavaScript: camelCase  
 Python: snake_case
 
