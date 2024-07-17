@@ -16,7 +16,7 @@
     ├──static/
          ├──assets/
               ├──images/
-              ├──blocks/
+              ├──styles/
               ├──blocks/
          ├──scripts/
               ├──scripts.js
@@ -36,16 +36,16 @@
 ---
 ## Соглашения
 
-HTML: БЭМ
+HTML: БЭМ  
 JavaScript: camelCase  
 Python: snake_case
 
 ---
 ## Переменные
 
-### Для Wildberries
+### Wildberries
 
-### Для Ozon
+### Ozon
 
 ---
 ## Классы
