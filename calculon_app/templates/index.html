@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!--Styles-->
+    <!--Regular Styles-->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/styles/reset.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/styles/main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/styles/regular/main.css') }}">
+
+    <!--Responsive styles-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/styles/responsive/responsive.css') }}">
 
     <!--Blocks-->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/blocks/tabs/tabs.css') }}">
@@ -45,7 +48,7 @@
   </main>
 
   <footer>
-    <p><i>So... It is crap definitely, but it works...<i></p>
+    <p><i>It is not so crapy anymore...<i></p>
   </footer>
 
   <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
