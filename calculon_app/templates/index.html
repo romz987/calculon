@@ -7,6 +7,8 @@
     <!--Regular Styles-->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/styles/reset.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/styles/regular/main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/styles/regular/footer.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/styles/regular/main-tabs-section.css') }}">
 
     <!--Responsive styles-->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/styles/responsive/responsive-main.css') }}">
@@ -20,19 +22,16 @@
   <body>
 
   <header>
-      <h1>Calculon_</h1>
+      <div class="head"><h1>Calculon_</h1></div>  
   </header>
 
   <main>
 
       <section class="main-tabs">
-          <button id="wbsole" class="main-buttons__button">Wildberries ИП</button>
-          <div class="main-buttons__inner-space"></div>
-          <button id="wbltd" class="main-buttons__button">Wildberries ООО</button>
-          <div class="main-buttons__inner-space"></div>
-          <button id="ozsole" class="main-buttons__button">OZON ИП</button>
-          <div class="main-buttons__inner_space"></div>
-          <button id="ozltd" class="main-buttons__button">OZON ООО</button>
+          <div class="main-tabs__flexwrapper"><button id="wbsole" class="main-tabs__button">Wildberries ИП</button></div>
+          <div class="main-tabs__flexwrapper"><button id="wbltd" class="main-tabs__button">Wildberries ООО</button></div>
+          <div class="main-tabs__flexwrapper"><button id="ozsole" class="main-tabs__button">OZON ИП</button></div>
+          <div class="main-tabs__flexwrapper"><button id="ozltd" class="main-tabs__button">OZON ООО</button></div>
       </section>
 
       <div class="main__flexwrapper">
@@ -48,7 +47,12 @@
   </main>
 
   <footer>
-    <p><i>It is not so crapy anymore...<i></p>
+      <div class="footer-content">
+          <div class="footer-content__logo"></div>
+          <div class="footer-content__text">
+              <p><i>It is not so crapy anymore...<i></p>
+          </div>
+      </div>
   </footer>
 
   <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
