@@ -7,19 +7,18 @@ html {
 }
 
 header {
-  border: 1px solid green;
   width: 100%;
-  height: 120px;
+  height: 120px;  
+  background: #433673;	
 } 
 
 main {
-  border: 1px solid black;
   width: 1000px;
+  height: 80vh;
   margin: 0 auto;
 }
 
 .head {
-  border: 1px solid green;
   width: 1000px;
   height: 100%;
   margin: 0 auto;
@@ -31,11 +30,12 @@ h1 {
   font-family: "Orbitron", sans-serif;
   font-size: 2rem;
 	font-weight: bold;	
+  color: white;
 }
 
 .main__flexwrapper {
   width: 100%;
-  height: 920px;
+  height: 70vh;
   display: flex;
   justify-content: space-between;
 }

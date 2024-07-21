@@ -1,15 +1,37 @@
 footer {
-  border: 2px solid black;
   width: 100%;
-  height: 120px;
+  height: 140px;
   position: absolute;
   bottom: 0;
   left: 0;
+  background-color: #BFBFBF;
 }
 
 .footer-content {
-  border: 1px solid red;
   width: 1000px;
   height: 100%;
   margin: 0 auto;
+  display: flex;
+}
+
+.footer-content__logo {
+  width: 95px;
+  height: 115px;
+  background-image: url("../../images/frog.png");
+  background-size: cover;
+  margin-top: 12px;
+}
+
+.footer-content__text {
+  margin-top: 15px;
+  margin-left: 15px;
+  font-size: 1.2rem;
+}
+
+.footer-content__text p {
+  padding-bottom: 10px; 
+}
+
+.footer-content__text p span{
+  font-weight: bold;
 }
